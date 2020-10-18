@@ -1,0 +1,6 @@
+git_push.sh
+phpunit.xml.dist
+.travis.yml
+composer.lock
+vendor/
+payments.json

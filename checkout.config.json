@@ -1,0 +1,8 @@
+{
+    "invokerPackage": "Klarna\\Checkout",
+    "packagePath": "php-klarna-checkout",
+    "packageName": "php-klarna-checkout",
+    "srcBasePath": "src",
+    "composerVendorName": "php-klarna-checkout",
+    "composerProjectName": "client"
+}
