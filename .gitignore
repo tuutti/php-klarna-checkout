@@ -3,5 +3,5 @@ phpunit.xml.dist
 .travis.yml
 composer.lock
 vendor/
-payments.json
+checkout.json
 openapitools.json
