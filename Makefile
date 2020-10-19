@@ -18,7 +18,7 @@ fix-schema:
 
 PHONY += build-client
 build-client:
-	@$(COMMAND) generate -c $(NAME).config.json -i $(NAME).json -g php -o ../$(NAME) --skip-validate-spec \
+	@$(COMMAND) generate -c $(NAME).config.json -i $(NAME).json -g php -o . --skip-validate-spec \
 		--git-host=github.com --git-repo-id=php-klarna-$(NAME) --git-user-id=tuutti \
 		--global-property apiTests=false
 

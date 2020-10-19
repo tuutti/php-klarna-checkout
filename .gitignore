@@ -4,4 +4,3 @@ phpunit.xml.dist
 composer.lock
 vendor/
 checkout.json
-openapitools.json
