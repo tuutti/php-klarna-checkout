@@ -4,3 +4,4 @@ phpunit.xml.dist
 composer.lock
 vendor/
 payments.json
+openapitools.json
