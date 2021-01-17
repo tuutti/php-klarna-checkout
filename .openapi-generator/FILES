@@ -21,6 +21,7 @@ docs/Model/PaymentProvider.md
 docs/Model/PickupLocationV1.md
 docs/Model/ProductIdentifiers.md
 docs/Model/ProductV1.md
+docs/Model/SelectedAddon.md
 docs/Model/ShippingAttributes.md
 docs/Model/ShippingOption.md
 docs/Model/TimeslotV1.md
@@ -49,7 +50,9 @@ src/Model/PaymentProvider.php
 src/Model/PickupLocationV1.php
 src/Model/ProductIdentifiers.php
 src/Model/ProductV1.php
+src/Model/SelectedAddon.php
 src/Model/ShippingAttributes.php
 src/Model/ShippingOption.php
 src/Model/TimeslotV1.php
 src/ObjectSerializer.php
+test/Model/SelectedAddonTest.php
