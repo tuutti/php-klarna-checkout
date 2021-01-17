@@ -115,6 +115,7 @@ Class | Method | HTTP request | Description
  - [PickupLocationV1](docs/Model/PickupLocationV1.md)
  - [ProductIdentifiers](docs/Model/ProductIdentifiers.md)
  - [ProductV1](docs/Model/ProductV1.md)
+ - [SelectedAddon](docs/Model/SelectedAddon.md)
  - [ShippingAttributes](docs/Model/ShippingAttributes.md)
  - [ShippingOption](docs/Model/ShippingOption.md)
  - [TimeslotV1](docs/Model/TimeslotV1.md)

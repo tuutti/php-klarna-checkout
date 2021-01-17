@@ -67,7 +67,8 @@ class ShippingOption implements ModelInterface, ArrayAccess
         'tax_rate' => 'int',
         'shipping_method' => 'string',
         'delivery_details' => '\Klarna\Checkout\Model\DeliveryDetailsV1',
-        'tms_reference' => 'string'
+        'tms_reference' => 'string',
+        'selected_addons' => '\Klarna\Checkout\Model\SelectedAddon[]'
     ];
 
     /**
@@ -86,7 +87,8 @@ class ShippingOption implements ModelInterface, ArrayAccess
         'tax_rate' => 'int64',
         'shipping_method' => null,
         'delivery_details' => null,
-        'tms_reference' => null
+        'tms_reference' => null,
+        'selected_addons' => null
     ];
 
     /**
@@ -126,7 +128,8 @@ class ShippingOption implements ModelInterface, ArrayAccess
         'tax_rate' => 'tax_rate',
         'shipping_method' => 'shipping_method',
         'delivery_details' => 'delivery_details',
-        'tms_reference' => 'tms_reference'
+        'tms_reference' => 'tms_reference',
+        'selected_addons' => 'selected_addons'
     ];
 
     /**
@@ -145,7 +148,8 @@ class ShippingOption implements ModelInterface, ArrayAccess
         'tax_rate' => 'setTaxRate',
         'shipping_method' => 'setShippingMethod',
         'delivery_details' => 'setDeliveryDetails',
-        'tms_reference' => 'setTmsReference'
+        'tms_reference' => 'setTmsReference',
+        'selected_addons' => 'setSelectedAddons'
     ];
 
     /**
@@ -164,7 +168,8 @@ class ShippingOption implements ModelInterface, ArrayAccess
         'tax_rate' => 'getTaxRate',
         'shipping_method' => 'getShippingMethod',
         'delivery_details' => 'getDeliveryDetails',
-        'tms_reference' => 'getTmsReference'
+        'tms_reference' => 'getTmsReference',
+        'selected_addons' => 'getSelectedAddons'
     ];
 
     /**
@@ -238,6 +243,7 @@ class ShippingOption implements ModelInterface, ArrayAccess
         $this->container['shipping_method'] = isset($data['shipping_method']) ? $data['shipping_method'] : null;
         $this->container['delivery_details'] = isset($data['delivery_details']) ? $data['delivery_details'] : null;
         $this->container['tms_reference'] = isset($data['tms_reference']) ? $data['tms_reference'] : null;
+        $this->container['selected_addons'] = isset($data['selected_addons']) ? $data['selected_addons'] : null;
     }
 
     /**
@@ -554,6 +560,30 @@ class ShippingOption implements ModelInterface, ArrayAccess
     public function setTmsReference($tms_reference)
     {
         $this->container['tms_reference'] = $tms_reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets selected_addons
+     *
+     * @return \Klarna\Checkout\Model\SelectedAddon[]|null
+     */
+    public function getSelectedAddons()
+    {
+        return $this->container['selected_addons'];
+    }
+
+    /**
+     * Sets selected_addons
+     *
+     * @param \Klarna\Checkout\Model\SelectedAddon[]|null $selected_addons selected_addons
+     *
+     * @return $this
+     */
+    public function setSelectedAddons($selected_addons)
+    {
+        $this->container['selected_addons'] = $selected_addons;
 
         return $this;
     }
