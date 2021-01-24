@@ -55,4 +55,3 @@ src/Model/ShippingAttributes.php
 src/Model/ShippingOption.php
 src/Model/TimeslotV1.php
 src/ObjectSerializer.php
-test/Model/SelectedAddonTest.php
