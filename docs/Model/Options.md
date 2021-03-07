@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **allowed_customer_types** | **string[]** | A list of allowed customer types. Supported types: &lt;b&gt;person&lt;/b&gt; &amp; &lt;b&gt;organization&lt;/b&gt;. Example: [\&quot;person\&quot;,\&quot;organization\&quot;] | [optional] 
 **show_subtotal_detail** | **bool** | If true, the Order Detail subtotals view is expanded when the Klarna Checkout iFrame is loaded. Default: false | [optional] [default to false]
 **additional_checkboxes** | [**\Klarna\Checkout\Model\CheckboxV2[]**](CheckboxV2.md) |  | [optional] 
-**verify_national_identification_number** | **bool** | Enable verification of National Identification Numbers in Sweden and Norway.This option also make the national identification number mandatory | [optional] [default to false]
+**verify_national_identification_number** | **bool** | Enable verification of National Identification Numbers in Sweden, Finland and Norway.This option also make the national identification number mandatory | [optional] [default to false]
 **show_vat_registration_number_field** | **bool** | If true, a optional VAT registration number field will be shown in the address form. Only applies for b2b orders. | [optional] [default to false]
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
