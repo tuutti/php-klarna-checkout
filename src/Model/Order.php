@@ -682,7 +682,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets tags
      *
-     * @param string[]|null $tags \"Extra information added to the order.  Example: [\"dangerous_goods\", \"bulky\"]
+     * @param string[]|null $tags Extra information added to the order.  Example: [\"dangerous_goods\", \"bulky\"]
      *
      * @return $this
      */
@@ -730,7 +730,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets purchase_country
      *
-     * @param string $purchase_country purchase country of the merchant's store. The format to be used is ISO 3166 alpha-2. Eg: GB, SE, DE, US, etc.   Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
+     * @param string $purchase_country The purchase country of the merchant's store. The format to be used is ISO 3166 alpha-2. Eg: GB, SE, DE, US, etc.   Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
      *
      * @return $this
      */
@@ -759,7 +759,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets purchase_currency
      *
-     * @param string $purchase_currency purchase currency of the merchant's store. The format to be used is ISO 4217. Eg: USD, EUR, SEK, GBP, etc.  Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
+     * @param string $purchase_currency The purchase currency of the merchant's store. The format to be used is ISO 4217. Eg: USD, EUR, SEK, GBP, etc.  Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
      *
      * @return $this
      */
@@ -836,7 +836,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets order_amount
      *
-     * @param int $order_amount \"Total amount of the order including tax and any available discounts. The value should be in non-negative minor units.  Example: 25 Euros should be 2500.\"
+     * @param int $order_amount Total amount of the order including tax and any available discounts. The value should be in non-negative minor units.  Example: 25 Euros should be 2500.
      *
      * @return $this
      */
@@ -1124,7 +1124,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets external_checkouts
      *
-     * @param \Klarna\Checkout\Model\PaymentProvider[]|null $external_checkouts List of external checkouts that will be displayed as part of payment methods in the checkout.
+     * @param \Klarna\Checkout\Model\PaymentProvider[]|null $external_checkouts List of external checkouts that will be displayed as part of payment methods in the checkout. The image_url is required, and the image size has to be 276x48px
      *
      * @return $this
      */
