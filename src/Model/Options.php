@@ -454,7 +454,7 @@ class Options implements ModelInterface, ArrayAccess
     /**
      * Sets allow_separate_shipping_address
      *
-     * @param bool|null $allow_separate_shipping_address If true, the consumer can enter different billing and shipping addresses. Default: false
+     * @param bool|null $allow_separate_shipping_address If true, the consumer can enter different billing and shipping addresses. Default: false, except for purchase_country DE where default is: true
      *
      * @return $this
      */
