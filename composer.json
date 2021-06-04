@@ -37,7 +37,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Klarna\\Checkout\\": "test/"
+            "Klarna\\Checkout\\Test\\": "test/"
         }
     }
 }
