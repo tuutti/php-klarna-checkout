@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **require_validate_callback_success** | **bool** | If true, validate callback must get a positive response to not stop purchase. Default: false. | [optional] [default to false]
 **acquiring_channel** | **string** | Acquiring channel for the order. The possible values are: &lt;ul&gt;&lt;li&gt;&lt;em&gt;MOTO for \&quot;Mail Order Telephone Order\&quot;&lt;/em&gt;&lt;/li&gt;&lt;li&gt;&lt;em&gt;ECOMMERCE for \&quot;E-commerce\&quot;&lt;/em&gt;&lt;/li&gt;&lt;li&gt;&lt;em&gt;IN_STORE for \&quot;Purchase in boutique\&quot;&lt;/em&gt;&lt;/li&gt;&lt;li&gt;&lt;em&gt;TELESALES for \&quot;Telesales/telemarketing\&quot;&lt;/em&gt;&lt;/li&gt;&lt;li&gt;&lt;em&gt;Default : ECOMMERCE&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt; | [optional] 
 **vat_removed** | **bool** | If true, VAT is not displayed in Checkout&#39;s Order Summary page. | [optional] [default to false]
-**allow_separate_shipping_address** | **bool** | If true, the consumer can enter different billing and shipping addresses. Default: false | [optional] [default to false]
+**allow_separate_shipping_address** | **bool** | If true, the consumer can enter different billing and shipping addresses. Default: false, except for purchase_country DE where default is: true | [optional] [default to false]
 **color_button** | **string** | Color for the buttons within the iFrame. Value should be a CSS hex color, e.g. \&quot;#FF9900\&quot; | [optional] 
 **color_button_text** | **string** | Color for the text inside the buttons within the iFrame. Value should be a CSS hex color, e.g. \&quot;#FF9900\&quot; | [optional] 
 **color_checkbox** | **string** | Color for the checkboxes within the iFrame. Value should be a CSS hex color, e.g. \&quot;#FF9900\&quot; | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **allowed_customer_types** | **string[]** | A list of allowed customer types. Supported types: &lt;b&gt;person&lt;/b&gt; &amp; &lt;b&gt;organization&lt;/b&gt;. Example: [\&quot;person\&quot;,\&quot;organization\&quot;] | [optional] 
 **show_subtotal_detail** | **bool** | If true, the Order Detail subtotals view is expanded when the Klarna Checkout iFrame is loaded. Default: false | [optional] [default to false]
 **additional_checkboxes** | [**\Klarna\Checkout\Model\CheckboxV2[]**](CheckboxV2.md) |  | [optional] 
-**verify_national_identification_number** | **bool** | Enable verification of National Identification Numbers in Sweden and Norway.This option also make the national identification number mandatory | [optional] [default to false]
+**verify_national_identification_number** | **bool** | Enable verification of National Identification Numbers in Sweden, Finland and Norway.This option also make the national identification number mandatory | [optional] [default to false]
 **show_vat_registration_number_field** | **bool** | If true, a optional VAT registration number field will be shown in the address form. Only applies for b2b orders. | [optional] [default to false]
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

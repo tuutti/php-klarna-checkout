@@ -425,7 +425,7 @@ class MerchantUrls implements ModelInterface, ArrayAccess
     /**
      * Sets confirmation
      *
-     * @param string $confirmation URL of the merchant confirmation page. The consumer will be redirected back to the confirmation page if the authorization is successful after the customer clicks on the ‘Place Order’ button inside checkout.(max 2000 characters) Example: \"https://merchant.com/confirmation\"
+     * @param string $confirmation URL of the merchant confirmation page. The consumer will be redirected back to the confirmation page if the authorization is successful after the customer clicks on the ‘Place Order’ button inside checkout. The special characters of the confirmation URL should be encoded, e.g. the \"space\" character should be written as \"%20\". Then, on top of that, the whole confirmation URL should be encoded. E.g. the \"space\" character should become \"%2520\". (max 2000 characters) Example: \"https://merchant.com/confirmation\"
      *
      * @return $this
      */

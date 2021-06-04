@@ -682,7 +682,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets tags
      *
-     * @param string[]|null $tags \"Extra information added to the order.  Example: [\"dangerous_goods\", \"bulky\"]
+     * @param string[]|null $tags Extra information added to the order.  Example: [\"dangerous_goods\", \"bulky\"]
      *
      * @return $this
      */
@@ -730,7 +730,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets purchase_country
      *
-     * @param string $purchase_country purchase country of the merchant's store. The format to be used is ISO 3166 alpha-2. Eg: GB, SE, DE, US, etc.   Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
+     * @param string $purchase_country The purchase country of the merchant's store. The format to be used is ISO 3166 alpha-2. Eg: GB, SE, DE, US, etc.   Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
      *
      * @return $this
      */
@@ -759,7 +759,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets purchase_currency
      *
-     * @param string $purchase_currency purchase currency of the merchant's store. The format to be used is ISO 4217. Eg: USD, EUR, SEK, GBP, etc.  Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
+     * @param string $purchase_currency The purchase currency of the merchant's store. The format to be used is ISO 4217. Eg: USD, EUR, SEK, GBP, etc.  Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
      *
      * @return $this
      */
@@ -836,7 +836,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets order_amount
      *
-     * @param int $order_amount \"Total amount of the order including tax and any available discounts. The value should be in non-negative minor units.  Example: 25 Euros should be 2500.\"
+     * @param int $order_amount Total amount of the order including tax and any available discounts. The value should be in non-negative minor units.  Example: 25 Euros should be 2500.
      *
      * @return $this
      */
@@ -1124,7 +1124,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets external_checkouts
      *
-     * @param \Klarna\Checkout\Model\PaymentProvider[]|null $external_checkouts List of external checkouts that will be displayed as part of payment methods in the checkout.
+     * @param \Klarna\Checkout\Model\PaymentProvider[]|null $external_checkouts List of external checkouts that will be displayed as part of payment methods in the checkout. The image_url is required, and the image size has to be 276x48px
      *
      * @return $this
      */
@@ -1330,7 +1330,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets billing_countries
      *
-     * @param string[]|null $billing_countries List of allowed billing countries for this order. If specified, the customer will be able to change the billing country in the checkout and you will be notified through ‘country_change’ callback or the ‘billing_address_change’ javascript event. If not specified then the default value will be the purchase country.  Example: [\"AD\", \"AE\", \"AG\", \"AI\", \"AL\", \"AM\", \"AQ\", \"AR\", \"AS\", \"AT\", \"AU\", \"AW\", \"AX\", \"AZ\", \"BA\", \"BB\", \"BD\", \"BE\", \"BF\", \"BG\", \"BH\", \"BJ\", \"BL\", \"BM\", \"BN\", \"BO\", \"BQ\", \"BR\", \"BS\", \"BT\", \"BW\", \"BY\", \"BZ\", \"CA\", \"CF\", \"CH\", \"CI\", \"CK\", \"CL\", \"CM\", \"CN\", \"CO\", \"CR\", \"CU\", \"CV\", \"CW\", \"CX\", \"CY\", \"CZ\", \"DE\", \"DJ\", \"DK\", \"DM\", \"DO\", \"DZ\", \"EC\", \"EE\", \"EG\", \"ER\", \"ES\", \"ET\", \"FI\", \"FJ\", \"FK\", \"FM\", \"FO\", \"FR\", \"GA\", \"GB\", \"GD\", \"GE\", \"GF\", \"GG\", \"GH\", \"GI\", \"GL\", \"GM\", \"GN\", \"GP\", \"GR\", \"GS\", \"GT\", \"GU\", \"GY\", \"HK\", \"HN\", \"HR\", \"HU\", \"ID\", \"IE\", \"IL\", \"IM\", \"IN\", \"IS\", \"IT\", \"JE\", \"JM\", \"JO\", \"JP\", \"KE\", \"KG\", \"KI\", \"KM\", \"KN\", \"KR\", \"KW\", \"KY\", \"KZ\", \"LA\", \"LA\", \"LB\", \"LC\", \"LI\", \"LK\", \"LR\", \"LS\", \"LT\", \"LU\", \"LV\", \"MA\", \"MC\", \"MD\", \"ME\", \"MF\", \"MG\", \"MH\", \"MK\", \"MK\", \"ML\", \"MM\", \"MN\", \"MO\", \"MP\", \"MQ\", \"MR\", \"MT\", \"MU\", \"MV\", \"MW\", \"MX\", \"MY\", \"MZ\", \"NA\", \"NC\", \"NE\", \"NF\", \"NG\", \"NI\", \"NL\", \"NO\", \"NP\", \"NR\", \"NU\", \"NZ\", \"OM\", \"PA\", \"PE\", \"PF\", \"PG\", \"PH\", \"PK\", \"PL\", \"PM\", \"PR\", \"PS\", \"PT\", \"PW\", \"PY\", \"QA\", \"RE\", \"RO\", \"RS\", \"RU\", \"RW\", \"SA\", \"SB\", \"SC\", \"SE\", \"SG\", \"SH\", \"SI\", \"SJ\", \"SK\", \"SL\", \"SM\", \"SN\", \"SR\", \"ST\", \"SV\", \"SX\", \"SZ\", \"TC\", \"TF\", \"TG\", \"TH\", \"TJ\", \"TK\", \"TL\", \"TO\", \"TR\", \"TT\", \"TV\", \"TW\", \"TZ\", \"UA\", \"UG\", \"UM\", \"US\", \"UY\", \"UZ\", \"VA\", \"VC\", \"VG\", \"VI\", \"VN\", \"VU\", \"WF\", \"WS\", \"XK\", \"YT\", \"ZA\", \"ZM\", \"ZW\"]\"
+     * @param string[]|null $billing_countries List of allowed billing countries for this order. If specified, the customer will be able to change the billing country in the checkout and you will be notified through ‘country_change’ callback or the ‘billing_address_change’ javascript event. If not specified but shipping_countries is specified, will use same values as shipping_countries. If not specified and shipping_countries is not specified, then the default value will be the purchase country.  Example: [\"AD\", \"AE\", \"AG\", \"AI\", \"AL\", \"AM\", \"AQ\", \"AR\", \"AS\", \"AT\", \"AU\", \"AW\", \"AX\", \"AZ\", \"BA\", \"BB\", \"BD\", \"BE\", \"BF\", \"BG\", \"BH\", \"BJ\", \"BL\", \"BM\", \"BN\", \"BO\", \"BQ\", \"BR\", \"BS\", \"BT\", \"BW\", \"BY\", \"BZ\", \"CA\", \"CF\", \"CH\", \"CI\", \"CK\", \"CL\", \"CM\", \"CN\", \"CO\", \"CR\", \"CU\", \"CV\", \"CW\", \"CX\", \"CY\", \"CZ\", \"DE\", \"DJ\", \"DK\", \"DM\", \"DO\", \"DZ\", \"EC\", \"EE\", \"EG\", \"ER\", \"ES\", \"ET\", \"FI\", \"FJ\", \"FK\", \"FM\", \"FO\", \"FR\", \"GA\", \"GB\", \"GD\", \"GE\", \"GF\", \"GG\", \"GH\", \"GI\", \"GL\", \"GM\", \"GN\", \"GP\", \"GR\", \"GS\", \"GT\", \"GU\", \"GY\", \"HK\", \"HN\", \"HR\", \"HU\", \"ID\", \"IE\", \"IL\", \"IM\", \"IN\", \"IS\", \"IT\", \"JE\", \"JM\", \"JO\", \"JP\", \"KE\", \"KG\", \"KI\", \"KM\", \"KN\", \"KR\", \"KW\", \"KY\", \"KZ\", \"LA\", \"LA\", \"LB\", \"LC\", \"LI\", \"LK\", \"LR\", \"LS\", \"LT\", \"LU\", \"LV\", \"MA\", \"MC\", \"MD\", \"ME\", \"MF\", \"MG\", \"MH\", \"MK\", \"MK\", \"ML\", \"MM\", \"MN\", \"MO\", \"MP\", \"MQ\", \"MR\", \"MT\", \"MU\", \"MV\", \"MW\", \"MX\", \"MY\", \"MZ\", \"NA\", \"NC\", \"NE\", \"NF\", \"NG\", \"NI\", \"NL\", \"NO\", \"NP\", \"NR\", \"NU\", \"NZ\", \"OM\", \"PA\", \"PE\", \"PF\", \"PG\", \"PH\", \"PK\", \"PL\", \"PM\", \"PR\", \"PS\", \"PT\", \"PW\", \"PY\", \"QA\", \"RE\", \"RO\", \"RS\", \"RU\", \"RW\", \"SA\", \"SB\", \"SC\", \"SE\", \"SG\", \"SH\", \"SI\", \"SJ\", \"SK\", \"SL\", \"SM\", \"SN\", \"SR\", \"ST\", \"SV\", \"SX\", \"SZ\", \"TC\", \"TF\", \"TG\", \"TH\", \"TJ\", \"TK\", \"TL\", \"TO\", \"TR\", \"TT\", \"TV\", \"TW\", \"TZ\", \"UA\", \"UG\", \"UM\", \"US\", \"UY\", \"UZ\", \"VA\", \"VC\", \"VG\", \"VI\", \"VN\", \"VU\", \"WF\", \"WS\", \"XK\", \"YT\", \"ZA\", \"ZM\", \"ZW\"]\"
      *
      * @return $this
      */
