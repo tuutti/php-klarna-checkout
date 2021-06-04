@@ -1,6 +1,6 @@
 <?php
 /**
- * Checkbox
+ * SelectedAddon
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Checkbox Class Doc Comment
+ * SelectedAddon Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
+class SelectedAddon implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'checkbox';
+    protected static $openAPIModelName = 'selected_addon';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,10 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'text' => 'string',
-        'checked' => 'bool',
-        'required' => 'bool'
+        'type' => 'string',
+        'price' => 'int',
+        'external_id' => 'string',
+        'user_input' => 'string'
     ];
 
     /**
@@ -72,9 +73,10 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'text' => null,
-        'checked' => null,
-        'required' => null
+        'type' => null,
+        'price' => 'int64',
+        'external_id' => null,
+        'user_input' => null
     ];
 
     /**
@@ -104,9 +106,10 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'text' => 'text',
-        'checked' => 'checked',
-        'required' => 'required'
+        'type' => 'type',
+        'price' => 'price',
+        'external_id' => 'external_id',
+        'user_input' => 'user_input'
     ];
 
     /**
@@ -115,9 +118,10 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'text' => 'setText',
-        'checked' => 'setChecked',
-        'required' => 'setRequired'
+        'type' => 'setType',
+        'price' => 'setPrice',
+        'external_id' => 'setExternalId',
+        'user_input' => 'setUserInput'
     ];
 
     /**
@@ -126,9 +130,10 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'text' => 'getText',
-        'checked' => 'getChecked',
-        'required' => 'getRequired'
+        'type' => 'getType',
+        'price' => 'getPrice',
+        'external_id' => 'getExternalId',
+        'user_input' => 'getUserInput'
     ];
 
     /**
@@ -188,9 +193,10 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['text'] = $data['text'] ?? null;
-        $this->container['checked'] = $data['checked'] ?? false;
-        $this->container['required'] = $data['required'] ?? false;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['price'] = $data['price'] ?? null;
+        $this->container['external_id'] = $data['external_id'] ?? null;
+        $this->container['user_input'] = $data['user_input'] ?? null;
     }
 
     /**
@@ -202,15 +208,6 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['text'] === null) {
-            $invalidProperties[] = "'text' can't be null";
-        }
-        if ($this->container['checked'] === null) {
-            $invalidProperties[] = "'checked' can't be null";
-        }
-        if ($this->container['required'] === null) {
-            $invalidProperties[] = "'required' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -227,73 +224,97 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets text
+     * Gets type
      *
-     * @return string
+     * @return string|null
      */
-    public function getText()
+    public function getType()
     {
-        return $this->container['text'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets text
+     * Sets type
      *
-     * @param string $text Text that will be displayed to the consumer aside the checkbox. Links and formatting can be added using Markdown. (max 255 characters)
+     * @param string|null $type type
      *
      * @return self
      */
-    public function setText($text)
+    public function setType($type)
     {
-        $this->container['text'] = $text;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets checked
+     * Gets price
      *
-     * @return bool
+     * @return int|null
      */
-    public function getChecked()
+    public function getPrice()
     {
-        return $this->container['checked'];
+        return $this->container['price'];
     }
 
     /**
-     * Sets checked
+     * Sets price
      *
-     * @param bool $checked Default state of the additional checkbox. It will use this value when loaded for the first time.
+     * @param int|null $price price
      *
      * @return self
      */
-    public function setChecked($checked)
+    public function setPrice($price)
     {
-        $this->container['checked'] = $checked;
+        $this->container['price'] = $price;
 
         return $this;
     }
 
     /**
-     * Gets required
+     * Gets external_id
      *
-     * @return bool
+     * @return string|null
      */
-    public function getRequired()
+    public function getExternalId()
     {
-        return $this->container['required'];
+        return $this->container['external_id'];
     }
 
     /**
-     * Sets required
+     * Sets external_id
      *
-     * @param bool $required Whether it is required for the consumer to check the additional checkbox box or not in order to complete the purchase.
+     * @param string|null $external_id external_id
      *
      * @return self
      */
-    public function setRequired($required)
+    public function setExternalId($external_id)
     {
-        $this->container['required'] = $required;
+        $this->container['external_id'] = $external_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_input
+     *
+     * @return string|null
+     */
+    public function getUserInput()
+    {
+        return $this->container['user_input'];
+    }
+
+    /**
+     * Sets user_input
+     *
+     * @param string|null $user_input user_input
+     *
+     * @return self
+     */
+    public function setUserInput($user_input)
+    {
+        $this->container['user_input'] = $user_input;
 
         return $this;
     }

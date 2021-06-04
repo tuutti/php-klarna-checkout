@@ -1,18 +1,19 @@
 # Klarna\Checkout\OrderApi
 
-All URIs are relative to *https://api.klarna.com*
+All URIs are relative to https://api.klarna.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createOrderMerchant**](OrderApi.md#createOrderMerchant) | **POST** /checkout/v3/orders | Create a new order
-[**readOrderMerchant**](OrderApi.md#readOrderMerchant) | **GET** /checkout/v3/orders/{order_id} | Retrieve an order
-[**updateOrderMerchant**](OrderApi.md#updateOrderMerchant) | **POST** /checkout/v3/orders/{order_id} | Update an order
+[**createOrderMerchant()**](OrderApi.md#createOrderMerchant) | **POST** /checkout/v3/orders | Create a new order
+[**readOrderMerchant()**](OrderApi.md#readOrderMerchant) | **GET** /checkout/v3/orders/{order_id} | Retrieve an order
+[**updateOrderMerchant()**](OrderApi.md#updateOrderMerchant) | **POST** /checkout/v3/orders/{order_id} | Update an order
 
 
+## `createOrderMerchant()`
 
-## createOrderMerchant
-
-> \Klarna\Checkout\Model\Order createOrderMerchant($body)
+```php
+createOrderMerchant($body): \Klarna\Checkout\Model\Order
+```
 
 Create a new order
 
@@ -37,7 +38,7 @@ $apiInstance = new Klarna\Checkout\Api\OrderApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order | 
+$body = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order
 
 try {
     $result = $apiInstance->createOrderMerchant($body);
@@ -45,11 +46,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OrderApi->createOrderMerchant: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -65,17 +64,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `readOrderMerchant()`
 
-## readOrderMerchant
-
-> \Klarna\Checkout\Model\Order readOrderMerchant($order_id)
+```php
+readOrderMerchant($order_id): \Klarna\Checkout\Model\Order
+```
 
 Retrieve an order
 
@@ -100,7 +100,7 @@ $apiInstance = new Klarna\Checkout\Api\OrderApi(
     new GuzzleHttp\Client(),
     $config
 );
-$order_id = 'order_id_example'; // string | 
+$order_id = 'order_id_example'; // string
 
 try {
     $result = $apiInstance->readOrderMerchant($order_id);
@@ -108,11 +108,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OrderApi->readOrderMerchant: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -129,16 +127,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `updateOrderMerchant()`
 
-## updateOrderMerchant
-
-> \Klarna\Checkout\Model\Order updateOrderMerchant($order_id, $body)
+```php
+updateOrderMerchant($order_id, $body): \Klarna\Checkout\Model\Order
+```
 
 Update an order
 
@@ -163,8 +162,8 @@ $apiInstance = new Klarna\Checkout\Api\OrderApi(
     new GuzzleHttp\Client(),
     $config
 );
-$order_id = 'order_id_example'; // string | 
-$body = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order | 
+$order_id = 'order_id_example'; // string
+$body = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order
 
 try {
     $result = $apiInstance->updateOrderMerchant($order_id, $body);
@@ -172,11 +171,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OrderApi->updateOrderMerchant: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -193,10 +190,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-
