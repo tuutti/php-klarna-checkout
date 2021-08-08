@@ -932,7 +932,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets verify_national_identification_number
      *
-     * @param bool|null $verify_national_identification_number Enable verification of National Identification Numbers in Sweden, Finland and Norway.This option also make the national identification number mandatory
+     * @param bool|null $verify_national_identification_number Enable verification of National Identification Numbers only in Sweden, Finland and Norway. This option also make the national identification number mandatory. (Not applicable for countries outside of Sweden, Finland and Norway)
      *
      * @return self
      */
