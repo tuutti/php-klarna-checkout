@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyAirReservationDetails
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyAirReservationDetails Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyAirReservationDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_air_reservation_details';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'pnr' => 'string',
+        'itinerary' => '\Klarna\Checkout\Model\AttachmentDisplayBodyItinerary[]',
+        'insurance' => '\Klarna\Checkout\Model\AttachmentDisplayBodyInsurance[]',
+        'passengers' => '\Klarna\Checkout\Model\AttachmentDisplayBodyPassengers[]',
+        'affiliate_name' => 'string'
     ];
 
     /**
@@ -70,7 +74,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'pnr' => null,
+        'itinerary' => null,
+        'insurance' => null,
+        'passengers' => null,
+        'affiliate_name' => null
     ];
 
     /**
@@ -100,7 +108,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'pnr' => 'pnr',
+        'itinerary' => 'itinerary',
+        'insurance' => 'insurance',
+        'passengers' => 'passengers',
+        'affiliate_name' => 'affiliate_name'
     ];
 
     /**
@@ -109,7 +121,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'pnr' => 'setPnr',
+        'itinerary' => 'setItinerary',
+        'insurance' => 'setInsurance',
+        'passengers' => 'setPassengers',
+        'affiliate_name' => 'setAffiliateName'
     ];
 
     /**
@@ -118,7 +134,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'pnr' => 'getPnr',
+        'itinerary' => 'getItinerary',
+        'insurance' => 'getInsurance',
+        'passengers' => 'getPassengers',
+        'affiliate_name' => 'getAffiliateName'
     ];
 
     /**
@@ -178,7 +198,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['pnr'] = $data['pnr'] ?? null;
+        $this->container['itinerary'] = $data['itinerary'] ?? null;
+        $this->container['insurance'] = $data['insurance'] ?? null;
+        $this->container['passengers'] = $data['passengers'] ?? null;
+        $this->container['affiliate_name'] = $data['affiliate_name'] ?? null;
     }
 
     /**
@@ -206,25 +230,121 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets pnr
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getPnr()
     {
-        return $this->container['options'];
+        return $this->container['pnr'];
     }
 
     /**
-     * Sets options
+     * Sets pnr
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $pnr Trip booking number, e.g. VH67899
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setPnr($pnr)
     {
-        $this->container['options'] = $options;
+        $this->container['pnr'] = $pnr;
+
+        return $this;
+    }
+
+    /**
+     * Gets itinerary
+     *
+     * @return \Klarna\Checkout\Model\AttachmentDisplayBodyItinerary[]|null
+     */
+    public function getItinerary()
+    {
+        return $this->container['itinerary'];
+    }
+
+    /**
+     * Sets itinerary
+     *
+     * @param \Klarna\Checkout\Model\AttachmentDisplayBodyItinerary[]|null $itinerary Itinerary data, one per segment
+     *
+     * @return self
+     */
+    public function setItinerary($itinerary)
+    {
+        $this->container['itinerary'] = $itinerary;
+
+        return $this;
+    }
+
+    /**
+     * Gets insurance
+     *
+     * @return \Klarna\Checkout\Model\AttachmentDisplayBodyInsurance[]|null
+     */
+    public function getInsurance()
+    {
+        return $this->container['insurance'];
+    }
+
+    /**
+     * Sets insurance
+     *
+     * @param \Klarna\Checkout\Model\AttachmentDisplayBodyInsurance[]|null $insurance Insurance data
+     *
+     * @return self
+     */
+    public function setInsurance($insurance)
+    {
+        $this->container['insurance'] = $insurance;
+
+        return $this;
+    }
+
+    /**
+     * Gets passengers
+     *
+     * @return \Klarna\Checkout\Model\AttachmentDisplayBodyPassengers[]|null
+     */
+    public function getPassengers()
+    {
+        return $this->container['passengers'];
+    }
+
+    /**
+     * Sets passengers
+     *
+     * @param \Klarna\Checkout\Model\AttachmentDisplayBodyPassengers[]|null $passengers Passengers data
+     *
+     * @return self
+     */
+    public function setPassengers($passengers)
+    {
+        $this->container['passengers'] = $passengers;
+
+        return $this;
+    }
+
+    /**
+     * Gets affiliate_name
+     *
+     * @return string|null
+     */
+    public function getAffiliateName()
+    {
+        return $this->container['affiliate_name'];
+    }
+
+    /**
+     * Sets affiliate_name
+     *
+     * @param string|null $affiliate_name Name of the affiliate that originated the purchase. If none, leave blank.
+     *
+     * @return self
+     */
+    public function setAffiliateName($affiliate_name)
+    {
+        $this->container['affiliate_name'] = $affiliate_name;
 
         return $this;
     }

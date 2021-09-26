@@ -1,6 +1,6 @@
 <?php
 /**
- * Checkbox
+ * AttachmentDisplayBodyOtherDeliveryAddress
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Checkbox Class Doc Comment
+ * AttachmentDisplayBodyOtherDeliveryAddress Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyOtherDeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'checkbox';
+    protected static $openAPIModelName = 'attachment_display_body_other_delivery_address';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,15 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'text' => 'string',
-        'checked' => 'bool',
-        'required' => 'bool'
+        'shipping_method' => 'object',
+        'shipping_type' => 'object',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'street_address' => 'string',
+        'street_number' => 'string',
+        'postal_code' => 'string',
+        'city' => 'string',
+        'country' => 'string'
     ];
 
     /**
@@ -72,9 +78,15 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'text' => null,
-        'checked' => null,
-        'required' => null
+        'shipping_method' => null,
+        'shipping_type' => null,
+        'first_name' => null,
+        'last_name' => null,
+        'street_address' => null,
+        'street_number' => null,
+        'postal_code' => null,
+        'city' => null,
+        'country' => null
     ];
 
     /**
@@ -104,9 +116,15 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'text' => 'text',
-        'checked' => 'checked',
-        'required' => 'required'
+        'shipping_method' => 'shipping_method',
+        'shipping_type' => 'shipping_type',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'street_address' => 'street_address',
+        'street_number' => 'street_number',
+        'postal_code' => 'postal_code',
+        'city' => 'city',
+        'country' => 'country'
     ];
 
     /**
@@ -115,9 +133,15 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'text' => 'setText',
-        'checked' => 'setChecked',
-        'required' => 'setRequired'
+        'shipping_method' => 'setShippingMethod',
+        'shipping_type' => 'setShippingType',
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName',
+        'street_address' => 'setStreetAddress',
+        'street_number' => 'setStreetNumber',
+        'postal_code' => 'setPostalCode',
+        'city' => 'setCity',
+        'country' => 'setCountry'
     ];
 
     /**
@@ -126,9 +150,15 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'text' => 'getText',
-        'checked' => 'getChecked',
-        'required' => 'getRequired'
+        'shipping_method' => 'getShippingMethod',
+        'shipping_type' => 'getShippingType',
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName',
+        'street_address' => 'getStreetAddress',
+        'street_number' => 'getStreetNumber',
+        'postal_code' => 'getPostalCode',
+        'city' => 'getCity',
+        'country' => 'getCountry'
     ];
 
     /**
@@ -188,9 +218,15 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['text'] = $data['text'] ?? null;
-        $this->container['checked'] = $data['checked'] ?? false;
-        $this->container['required'] = $data['required'] ?? false;
+        $this->container['shipping_method'] = $data['shipping_method'] ?? null;
+        $this->container['shipping_type'] = $data['shipping_type'] ?? null;
+        $this->container['first_name'] = $data['first_name'] ?? null;
+        $this->container['last_name'] = $data['last_name'] ?? null;
+        $this->container['street_address'] = $data['street_address'] ?? null;
+        $this->container['street_number'] = $data['street_number'] ?? null;
+        $this->container['postal_code'] = $data['postal_code'] ?? null;
+        $this->container['city'] = $data['city'] ?? null;
+        $this->container['country'] = $data['country'] ?? null;
     }
 
     /**
@@ -202,15 +238,6 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['text'] === null) {
-            $invalidProperties[] = "'text' can't be null";
-        }
-        if ($this->container['checked'] === null) {
-            $invalidProperties[] = "'checked' can't be null";
-        }
-        if ($this->container['required'] === null) {
-            $invalidProperties[] = "'required' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -227,73 +254,217 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets text
+     * Gets shipping_method
      *
-     * @return string
+     * @return object|null
      */
-    public function getText()
+    public function getShippingMethod()
     {
-        return $this->container['text'];
+        return $this->container['shipping_method'];
     }
 
     /**
-     * Sets text
+     * Sets shipping_method
      *
-     * @param string $text Text that will be displayed to the consumer aside the checkbox. Links and formatting can be added using Markdown. (max 1000 characters)
+     * @param object|null $shipping_method shipping_method
      *
      * @return self
      */
-    public function setText($text)
+    public function setShippingMethod($shipping_method)
     {
-        $this->container['text'] = $text;
+        $this->container['shipping_method'] = $shipping_method;
 
         return $this;
     }
 
     /**
-     * Gets checked
+     * Gets shipping_type
      *
-     * @return bool
+     * @return object|null
      */
-    public function getChecked()
+    public function getShippingType()
     {
-        return $this->container['checked'];
+        return $this->container['shipping_type'];
     }
 
     /**
-     * Sets checked
+     * Sets shipping_type
      *
-     * @param bool $checked Default state of the additional checkbox. It will use this value when loaded for the first time.
+     * @param object|null $shipping_type shipping_type
      *
      * @return self
      */
-    public function setChecked($checked)
+    public function setShippingType($shipping_type)
     {
-        $this->container['checked'] = $checked;
+        $this->container['shipping_type'] = $shipping_type;
 
         return $this;
     }
 
     /**
-     * Gets required
+     * Gets first_name
      *
-     * @return bool
+     * @return string|null
      */
-    public function getRequired()
+    public function getFirstName()
     {
-        return $this->container['required'];
+        return $this->container['first_name'];
     }
 
     /**
-     * Sets required
+     * Sets first_name
      *
-     * @param bool $required Whether it is required for the consumer to check the additional checkbox box or not in order to complete the purchase.
+     * @param string|null $first_name first_name
      *
      * @return self
      */
-    public function setRequired($required)
+    public function setFirstName($first_name)
     {
-        $this->container['required'] = $required;
+        $this->container['first_name'] = $first_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_name
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->container['last_name'];
+    }
+
+    /**
+     * Sets last_name
+     *
+     * @param string|null $last_name last_name
+     *
+     * @return self
+     */
+    public function setLastName($last_name)
+    {
+        $this->container['last_name'] = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets street_address
+     *
+     * @return string|null
+     */
+    public function getStreetAddress()
+    {
+        return $this->container['street_address'];
+    }
+
+    /**
+     * Sets street_address
+     *
+     * @param string|null $street_address street_address
+     *
+     * @return self
+     */
+    public function setStreetAddress($street_address)
+    {
+        $this->container['street_address'] = $street_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets street_number
+     *
+     * @return string|null
+     */
+    public function getStreetNumber()
+    {
+        return $this->container['street_number'];
+    }
+
+    /**
+     * Sets street_number
+     *
+     * @param string|null $street_number street_number
+     *
+     * @return self
+     */
+    public function setStreetNumber($street_number)
+    {
+        $this->container['street_number'] = $street_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets postal_code
+     *
+     * @return string|null
+     */
+    public function getPostalCode()
+    {
+        return $this->container['postal_code'];
+    }
+
+    /**
+     * Sets postal_code
+     *
+     * @param string|null $postal_code postal_code
+     *
+     * @return self
+     */
+    public function setPostalCode($postal_code)
+    {
+        $this->container['postal_code'] = $postal_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets city
+     *
+     * @return string|null
+     */
+    public function getCity()
+    {
+        return $this->container['city'];
+    }
+
+    /**
+     * Sets city
+     *
+     * @param string|null $city city
+     *
+     * @return self
+     */
+    public function setCity($city)
+    {
+        $this->container['city'] = $city;
+
+        return $this;
+    }
+
+    /**
+     * Gets country
+     *
+     * @return string|null
+     */
+    public function getCountry()
+    {
+        return $this->container['country'];
+    }
+
+    /**
+     * Sets country
+     *
+     * @param string|null $country country
+     *
+     * @return self
+     */
+    public function setCountry($country)
+    {
+        $this->container['country'] = $country;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyInsurance
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyInsurance Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyInsurance implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_insurance';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'insurance_company' => 'string',
+        'insurance_type' => 'object',
+        'insurance_price' => 'float'
     ];
 
     /**
@@ -70,7 +72,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'insurance_company' => null,
+        'insurance_type' => null,
+        'insurance_price' => null
     ];
 
     /**
@@ -100,7 +104,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'insurance_company' => 'insurance_company',
+        'insurance_type' => 'insurance_type',
+        'insurance_price' => 'insurance_price'
     ];
 
     /**
@@ -109,7 +115,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'insurance_company' => 'setInsuranceCompany',
+        'insurance_type' => 'setInsuranceType',
+        'insurance_price' => 'setInsurancePrice'
     ];
 
     /**
@@ -118,7 +126,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'insurance_company' => 'getInsuranceCompany',
+        'insurance_type' => 'getInsuranceType',
+        'insurance_price' => 'getInsurancePrice'
     ];
 
     /**
@@ -178,7 +188,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['insurance_company'] = $data['insurance_company'] ?? null;
+        $this->container['insurance_type'] = $data['insurance_type'] ?? null;
+        $this->container['insurance_price'] = $data['insurance_price'] ?? null;
     }
 
     /**
@@ -206,25 +218,73 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets insurance_company
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getInsuranceCompany()
     {
-        return $this->container['options'];
+        return $this->container['insurance_company'];
     }
 
     /**
-     * Sets options
+     * Sets insurance_company
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $insurance_company insurance_company
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setInsuranceCompany($insurance_company)
     {
-        $this->container['options'] = $options;
+        $this->container['insurance_company'] = $insurance_company;
+
+        return $this;
+    }
+
+    /**
+     * Gets insurance_type
+     *
+     * @return object|null
+     */
+    public function getInsuranceType()
+    {
+        return $this->container['insurance_type'];
+    }
+
+    /**
+     * Sets insurance_type
+     *
+     * @param object|null $insurance_type insurance_type
+     *
+     * @return self
+     */
+    public function setInsuranceType($insurance_type)
+    {
+        $this->container['insurance_type'] = $insurance_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets insurance_price
+     *
+     * @return float|null
+     */
+    public function getInsurancePrice()
+    {
+        return $this->container['insurance_price'];
+    }
+
+    /**
+     * Sets insurance_price
+     *
+     * @param float|null $insurance_price Local currency
+     *
+     * @return self
+     */
+    public function setInsurancePrice($insurance_price)
+    {
+        $this->container['insurance_price'] = $insurance_price;
 
         return $this;
     }

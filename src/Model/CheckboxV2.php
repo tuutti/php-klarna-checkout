@@ -272,7 +272,7 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets text
      *
-     * @param string $text Text that will be displayed to the consumer aside the checkbox. Links and formatting can be added using Markdown. (max 255 characters)
+     * @param string $text Text that will be displayed to the consumer aside the checkbox. Links and formatting can be added using Markdown. (max 1000 characters)
      *
      * @return self
      */

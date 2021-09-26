@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyUniqueAccountIdentifierSeller
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyUniqueAccountIdentifierSeller Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyUniqueAccountIdentifierSeller implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_unique_account_identifier_seller';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'email' => 'string',
+        'pno' => 'string',
+        'other' => 'string'
     ];
 
     /**
@@ -70,7 +72,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'email' => null,
+        'pno' => null,
+        'other' => null
     ];
 
     /**
@@ -100,7 +104,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'email' => 'email',
+        'pno' => 'pno',
+        'other' => 'other'
     ];
 
     /**
@@ -109,7 +115,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'email' => 'setEmail',
+        'pno' => 'setPno',
+        'other' => 'setOther'
     ];
 
     /**
@@ -118,7 +126,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'email' => 'getEmail',
+        'pno' => 'getPno',
+        'other' => 'getOther'
     ];
 
     /**
@@ -178,7 +188,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['email'] = $data['email'] ?? null;
+        $this->container['pno'] = $data['pno'] ?? null;
+        $this->container['other'] = $data['other'] ?? null;
     }
 
     /**
@@ -206,25 +218,73 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets email
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getEmail()
     {
-        return $this->container['options'];
+        return $this->container['email'];
     }
 
     /**
-     * Sets options
+     * Sets email
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $email email
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setEmail($email)
     {
-        $this->container['options'] = $options;
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets pno
+     *
+     * @return string|null
+     */
+    public function getPno()
+    {
+        return $this->container['pno'];
+    }
+
+    /**
+     * Sets pno
+     *
+     * @param string|null $pno pno
+     *
+     * @return self
+     */
+    public function setPno($pno)
+    {
+        $this->container['pno'] = $pno;
+
+        return $this;
+    }
+
+    /**
+     * Gets other
+     *
+     * @return string|null
+     */
+    public function getOther()
+    {
+        return $this->container['other'];
+    }
+
+    /**
+     * Sets other
+     *
+     * @param string|null $other other
+     *
+     * @return self
+     */
+    public function setOther($other)
+    {
+        $this->container['other'] = $other;
 
         return $this;
     }
