@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyAccountLastModified
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyAccountLastModified Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyAccountLastModified implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_account_last_modified';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'password' => '\DateTime',
+        'email' => '\DateTime',
+        'listing' => '\DateTime',
+        'login' => '\DateTime',
+        'address' => '\DateTime'
     ];
 
     /**
@@ -70,7 +74,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'password' => 'date-time',
+        'email' => 'date-time',
+        'listing' => 'date-time',
+        'login' => 'date-time',
+        'address' => 'date-time'
     ];
 
     /**
@@ -100,7 +108,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'password' => 'password',
+        'email' => 'email',
+        'listing' => 'listing',
+        'login' => 'login',
+        'address' => 'address'
     ];
 
     /**
@@ -109,7 +121,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'password' => 'setPassword',
+        'email' => 'setEmail',
+        'listing' => 'setListing',
+        'login' => 'setLogin',
+        'address' => 'setAddress'
     ];
 
     /**
@@ -118,7 +134,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'password' => 'getPassword',
+        'email' => 'getEmail',
+        'listing' => 'getListing',
+        'login' => 'getLogin',
+        'address' => 'getAddress'
     ];
 
     /**
@@ -178,7 +198,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['password'] = $data['password'] ?? null;
+        $this->container['email'] = $data['email'] ?? null;
+        $this->container['listing'] = $data['listing'] ?? null;
+        $this->container['login'] = $data['login'] ?? null;
+        $this->container['address'] = $data['address'] ?? null;
     }
 
     /**
@@ -206,25 +230,121 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets password
      *
-     * @return string[]|null
+     * @return \DateTime|null
      */
-    public function getOptions()
+    public function getPassword()
     {
-        return $this->container['options'];
+        return $this->container['password'];
     }
 
     /**
-     * Sets options
+     * Sets password
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param \DateTime|null $password ISO 8601 e.g. 2012-11-24T15:00
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setPassword($password)
     {
-        $this->container['options'] = $options;
+        $this->container['password'] = $password;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return \DateTime|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param \DateTime|null $email ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets listing
+     *
+     * @return \DateTime|null
+     */
+    public function getListing()
+    {
+        return $this->container['listing'];
+    }
+
+    /**
+     * Sets listing
+     *
+     * @param \DateTime|null $listing ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setListing($listing)
+    {
+        $this->container['listing'] = $listing;
+
+        return $this;
+    }
+
+    /**
+     * Gets login
+     *
+     * @return \DateTime|null
+     */
+    public function getLogin()
+    {
+        return $this->container['login'];
+    }
+
+    /**
+     * Sets login
+     *
+     * @param \DateTime|null $login ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setLogin($login)
+    {
+        $this->container['login'] = $login;
+
+        return $this;
+    }
+
+    /**
+     * Gets address
+     *
+     * @return \DateTime|null
+     */
+    public function getAddress()
+    {
+        return $this->container['address'];
+    }
+
+    /**
+     * Sets address
+     *
+     * @param \DateTime|null $address ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setAddress($address)
+    {
+        $this->container['address'] = $address;
 
         return $this;
     }

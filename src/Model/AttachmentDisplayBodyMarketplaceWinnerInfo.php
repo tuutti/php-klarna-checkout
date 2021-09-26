@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyMarketplaceWinnerInfo
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyMarketplaceWinnerInfo Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyMarketplaceWinnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_marketplace_winner_info';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'unique_account_identifier_winner' => '\Klarna\Checkout\Model\AttachmentDisplayBodyUniqueAccountIdentifierSeller',
+        'account_registration_date' => '\DateTime',
+        'account_last_modified' => '\Klarna\Checkout\Model\AttachmentDisplayBodyAccountLastModified',
+        'number_of_trades' => 'int',
+        'volume_of_trades' => 'int'
     ];
 
     /**
@@ -70,7 +74,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'unique_account_identifier_winner' => null,
+        'account_registration_date' => 'date-time',
+        'account_last_modified' => null,
+        'number_of_trades' => null,
+        'volume_of_trades' => null
     ];
 
     /**
@@ -100,7 +108,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'unique_account_identifier_winner' => 'unique_account_identifier_winner',
+        'account_registration_date' => 'account_registration_date',
+        'account_last_modified' => 'account_last_modified',
+        'number_of_trades' => 'number_of_trades',
+        'volume_of_trades' => 'volume_of_trades'
     ];
 
     /**
@@ -109,7 +121,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'unique_account_identifier_winner' => 'setUniqueAccountIdentifierWinner',
+        'account_registration_date' => 'setAccountRegistrationDate',
+        'account_last_modified' => 'setAccountLastModified',
+        'number_of_trades' => 'setNumberOfTrades',
+        'volume_of_trades' => 'setVolumeOfTrades'
     ];
 
     /**
@@ -118,7 +134,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'unique_account_identifier_winner' => 'getUniqueAccountIdentifierWinner',
+        'account_registration_date' => 'getAccountRegistrationDate',
+        'account_last_modified' => 'getAccountLastModified',
+        'number_of_trades' => 'getNumberOfTrades',
+        'volume_of_trades' => 'getVolumeOfTrades'
     ];
 
     /**
@@ -178,7 +198,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['unique_account_identifier_winner'] = $data['unique_account_identifier_winner'] ?? null;
+        $this->container['account_registration_date'] = $data['account_registration_date'] ?? null;
+        $this->container['account_last_modified'] = $data['account_last_modified'] ?? null;
+        $this->container['number_of_trades'] = $data['number_of_trades'] ?? null;
+        $this->container['volume_of_trades'] = $data['volume_of_trades'] ?? null;
     }
 
     /**
@@ -206,25 +230,121 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets unique_account_identifier_winner
      *
-     * @return string[]|null
+     * @return \Klarna\Checkout\Model\AttachmentDisplayBodyUniqueAccountIdentifierSeller|null
      */
-    public function getOptions()
+    public function getUniqueAccountIdentifierWinner()
     {
-        return $this->container['options'];
+        return $this->container['unique_account_identifier_winner'];
     }
 
     /**
-     * Sets options
+     * Sets unique_account_identifier_winner
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param \Klarna\Checkout\Model\AttachmentDisplayBodyUniqueAccountIdentifierSeller|null $unique_account_identifier_winner unique_account_identifier_winner
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setUniqueAccountIdentifierWinner($unique_account_identifier_winner)
     {
-        $this->container['options'] = $options;
+        $this->container['unique_account_identifier_winner'] = $unique_account_identifier_winner;
+
+        return $this;
+    }
+
+    /**
+     * Gets account_registration_date
+     *
+     * @return \DateTime|null
+     */
+    public function getAccountRegistrationDate()
+    {
+        return $this->container['account_registration_date'];
+    }
+
+    /**
+     * Sets account_registration_date
+     *
+     * @param \DateTime|null $account_registration_date ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setAccountRegistrationDate($account_registration_date)
+    {
+        $this->container['account_registration_date'] = $account_registration_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets account_last_modified
+     *
+     * @return \Klarna\Checkout\Model\AttachmentDisplayBodyAccountLastModified|null
+     */
+    public function getAccountLastModified()
+    {
+        return $this->container['account_last_modified'];
+    }
+
+    /**
+     * Sets account_last_modified
+     *
+     * @param \Klarna\Checkout\Model\AttachmentDisplayBodyAccountLastModified|null $account_last_modified account_last_modified
+     *
+     * @return self
+     */
+    public function setAccountLastModified($account_last_modified)
+    {
+        $this->container['account_last_modified'] = $account_last_modified;
+
+        return $this;
+    }
+
+    /**
+     * Gets number_of_trades
+     *
+     * @return int|null
+     */
+    public function getNumberOfTrades()
+    {
+        return $this->container['number_of_trades'];
+    }
+
+    /**
+     * Sets number_of_trades
+     *
+     * @param int|null $number_of_trades Number of trades the winner did since 12 months back, e.g. 5
+     *
+     * @return self
+     */
+    public function setNumberOfTrades($number_of_trades)
+    {
+        $this->container['number_of_trades'] = $number_of_trades;
+
+        return $this;
+    }
+
+    /**
+     * Gets volume_of_trades
+     *
+     * @return int|null
+     */
+    public function getVolumeOfTrades()
+    {
+        return $this->container['volume_of_trades'];
+    }
+
+    /**
+     * Sets volume_of_trades
+     *
+     * @param int|null $volume_of_trades Volume of trades the winner did since 12 months back, 230.5
+     *
+     * @return self
+     */
+    public function setVolumeOfTrades($volume_of_trades)
+    {
+        $this->container['volume_of_trades'] = $volume_of_trades;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyCarRentalItinerary
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyCarRentalItinerary Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyCarRentalItinerary implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_car_rental_itinerary';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,14 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'rental_company' => 'string',
+        'drivers_id' => 'int[]',
+        'pick_up_location' => '\Klarna\Checkout\Model\AttachmentDisplayBodyAddress',
+        'start_time' => '\DateTime',
+        'drop_off_location' => '\Klarna\Checkout\Model\AttachmentDisplayBodyAddress',
+        'end_time' => '\DateTime',
+        'car_price' => 'float',
+        'class' => 'string'
     ];
 
     /**
@@ -70,7 +77,14 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'rental_company' => null,
+        'drivers_id' => null,
+        'pick_up_location' => null,
+        'start_time' => 'date-time',
+        'drop_off_location' => null,
+        'end_time' => 'date-time',
+        'car_price' => null,
+        'class' => null
     ];
 
     /**
@@ -100,7 +114,14 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'rental_company' => 'rental_company',
+        'drivers_id' => 'drivers_id',
+        'pick_up_location' => 'pick_up_location',
+        'start_time' => 'start_time',
+        'drop_off_location' => 'drop_off_location',
+        'end_time' => 'end_time',
+        'car_price' => 'car_price',
+        'class' => 'class'
     ];
 
     /**
@@ -109,7 +130,14 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'rental_company' => 'setRentalCompany',
+        'drivers_id' => 'setDriversId',
+        'pick_up_location' => 'setPickUpLocation',
+        'start_time' => 'setStartTime',
+        'drop_off_location' => 'setDropOffLocation',
+        'end_time' => 'setEndTime',
+        'car_price' => 'setCarPrice',
+        'class' => 'setClass'
     ];
 
     /**
@@ -118,7 +146,14 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'rental_company' => 'getRentalCompany',
+        'drivers_id' => 'getDriversId',
+        'pick_up_location' => 'getPickUpLocation',
+        'start_time' => 'getStartTime',
+        'drop_off_location' => 'getDropOffLocation',
+        'end_time' => 'getEndTime',
+        'car_price' => 'getCarPrice',
+        'class' => 'getClass'
     ];
 
     /**
@@ -178,7 +213,14 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['rental_company'] = $data['rental_company'] ?? null;
+        $this->container['drivers_id'] = $data['drivers_id'] ?? null;
+        $this->container['pick_up_location'] = $data['pick_up_location'] ?? null;
+        $this->container['start_time'] = $data['start_time'] ?? null;
+        $this->container['drop_off_location'] = $data['drop_off_location'] ?? null;
+        $this->container['end_time'] = $data['end_time'] ?? null;
+        $this->container['car_price'] = $data['car_price'] ?? null;
+        $this->container['class'] = $data['class'] ?? null;
     }
 
     /**
@@ -206,25 +248,193 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets rental_company
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getRentalCompany()
     {
-        return $this->container['options'];
+        return $this->container['rental_company'];
     }
 
     /**
-     * Sets options
+     * Sets rental_company
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $rental_company Name of rental company
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setRentalCompany($rental_company)
     {
-        $this->container['options'] = $options;
+        $this->container['rental_company'] = $rental_company;
+
+        return $this;
+    }
+
+    /**
+     * Gets drivers_id
+     *
+     * @return int[]|null
+     */
+    public function getDriversId()
+    {
+        return $this->container['drivers_id'];
+    }
+
+    /**
+     * Sets drivers_id
+     *
+     * @param int[]|null $drivers_id drivers_id
+     *
+     * @return self
+     */
+    public function setDriversId($drivers_id)
+    {
+        $this->container['drivers_id'] = $drivers_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets pick_up_location
+     *
+     * @return \Klarna\Checkout\Model\AttachmentDisplayBodyAddress|null
+     */
+    public function getPickUpLocation()
+    {
+        return $this->container['pick_up_location'];
+    }
+
+    /**
+     * Sets pick_up_location
+     *
+     * @param \Klarna\Checkout\Model\AttachmentDisplayBodyAddress|null $pick_up_location pick_up_location
+     *
+     * @return self
+     */
+    public function setPickUpLocation($pick_up_location)
+    {
+        $this->container['pick_up_location'] = $pick_up_location;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_time
+     *
+     * @return \DateTime|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param \DateTime|null $start_time ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setStartTime($start_time)
+    {
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets drop_off_location
+     *
+     * @return \Klarna\Checkout\Model\AttachmentDisplayBodyAddress|null
+     */
+    public function getDropOffLocation()
+    {
+        return $this->container['drop_off_location'];
+    }
+
+    /**
+     * Sets drop_off_location
+     *
+     * @param \Klarna\Checkout\Model\AttachmentDisplayBodyAddress|null $drop_off_location drop_off_location
+     *
+     * @return self
+     */
+    public function setDropOffLocation($drop_off_location)
+    {
+        $this->container['drop_off_location'] = $drop_off_location;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_time
+     *
+     * @return \DateTime|null
+     */
+    public function getEndTime()
+    {
+        return $this->container['end_time'];
+    }
+
+    /**
+     * Sets end_time
+     *
+     * @param \DateTime|null $end_time ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setEndTime($end_time)
+    {
+        $this->container['end_time'] = $end_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets car_price
+     *
+     * @return float|null
+     */
+    public function getCarPrice()
+    {
+        return $this->container['car_price'];
+    }
+
+    /**
+     * Sets car_price
+     *
+     * @param float|null $car_price Local currency
+     *
+     * @return self
+     */
+    public function setCarPrice($car_price)
+    {
+        $this->container['car_price'] = $car_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets class
+     *
+     * @return string|null
+     */
+    public function getClass()
+    {
+        return $this->container['class'];
+    }
+
+    /**
+     * Sets class
+     *
+     * @param string|null $class class
+     *
+     * @return self
+     */
+    public function setClass($class)
+    {
+        $this->container['class'] = $class;
 
         return $this;
     }

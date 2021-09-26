@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplay
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplay Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplay implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'body' => '\Klarna\Checkout\Model\AttachmentDisplayBody',
+        'content_type' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'body' => null,
+        'content_type' => null
     ];
 
     /**
@@ -100,7 +102,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'body' => 'body',
+        'content_type' => 'content_type'
     ];
 
     /**
@@ -109,7 +112,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'body' => 'setBody',
+        'content_type' => 'setContentType'
     ];
 
     /**
@@ -118,7 +122,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'body' => 'getBody',
+        'content_type' => 'getContentType'
     ];
 
     /**
@@ -178,7 +183,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['body'] = $data['body'] ?? null;
+        $this->container['content_type'] = $data['content_type'] ?? null;
     }
 
     /**
@@ -190,6 +196,12 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['body'] === null) {
+            $invalidProperties[] = "'body' can't be null";
+        }
+        if ($this->container['content_type'] === null) {
+            $invalidProperties[] = "'content_type' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -206,25 +218,49 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets body
      *
-     * @return string[]|null
+     * @return \Klarna\Checkout\Model\AttachmentDisplayBody
      */
-    public function getOptions()
+    public function getBody()
     {
-        return $this->container['options'];
+        return $this->container['body'];
     }
 
     /**
-     * Sets options
+     * Sets body
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param \Klarna\Checkout\Model\AttachmentDisplayBody $body body
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setBody($body)
     {
-        $this->container['options'] = $options;
+        $this->container['body'] = $body;
+
+        return $this;
+    }
+
+    /**
+     * Gets content_type
+     *
+     * @return string
+     */
+    public function getContentType()
+    {
+        return $this->container['content_type'];
+    }
+
+    /**
+     * Sets content_type
+     *
+     * @param string $content_type The content type of the body. It is usually represented as \"application/vnd.klarna.internal.emd-v2+json\"
+     *
+     * @return self
+     */
+    public function setContentType($content_type)
+    {
+        $this->container['content_type'] = $content_type;
 
         return $this;
     }

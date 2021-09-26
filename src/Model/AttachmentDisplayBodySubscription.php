@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodySubscription
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodySubscription Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodySubscription implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_subscription';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'subscription_name' => 'string',
+        'start_time' => '\DateTime',
+        'end_time' => '\DateTime',
+        'auto_renewal_of_subscription' => 'bool',
+        'affiliate_name' => 'string'
     ];
 
     /**
@@ -70,7 +74,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'subscription_name' => null,
+        'start_time' => 'date-time',
+        'end_time' => 'date-time',
+        'auto_renewal_of_subscription' => null,
+        'affiliate_name' => null
     ];
 
     /**
@@ -100,7 +108,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'subscription_name' => 'subscription_name',
+        'start_time' => 'start_time',
+        'end_time' => 'end_time',
+        'auto_renewal_of_subscription' => 'auto_renewal_of_subscription',
+        'affiliate_name' => 'affiliate_name'
     ];
 
     /**
@@ -109,7 +121,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'subscription_name' => 'setSubscriptionName',
+        'start_time' => 'setStartTime',
+        'end_time' => 'setEndTime',
+        'auto_renewal_of_subscription' => 'setAutoRenewalOfSubscription',
+        'affiliate_name' => 'setAffiliateName'
     ];
 
     /**
@@ -118,7 +134,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'subscription_name' => 'getSubscriptionName',
+        'start_time' => 'getStartTime',
+        'end_time' => 'getEndTime',
+        'auto_renewal_of_subscription' => 'getAutoRenewalOfSubscription',
+        'affiliate_name' => 'getAffiliateName'
     ];
 
     /**
@@ -178,7 +198,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['subscription_name'] = $data['subscription_name'] ?? null;
+        $this->container['start_time'] = $data['start_time'] ?? null;
+        $this->container['end_time'] = $data['end_time'] ?? null;
+        $this->container['auto_renewal_of_subscription'] = $data['auto_renewal_of_subscription'] ?? null;
+        $this->container['affiliate_name'] = $data['affiliate_name'] ?? null;
     }
 
     /**
@@ -206,25 +230,121 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets subscription_name
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getSubscriptionName()
     {
-        return $this->container['options'];
+        return $this->container['subscription_name'];
     }
 
     /**
-     * Sets options
+     * Sets subscription_name
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $subscription_name Name of the product on subscription, e.g. \"Contact lenses\"
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setSubscriptionName($subscription_name)
     {
-        $this->container['options'] = $options;
+        $this->container['subscription_name'] = $subscription_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_time
+     *
+     * @return \DateTime|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param \DateTime|null $start_time ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setStartTime($start_time)
+    {
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_time
+     *
+     * @return \DateTime|null
+     */
+    public function getEndTime()
+    {
+        return $this->container['end_time'];
+    }
+
+    /**
+     * Sets end_time
+     *
+     * @param \DateTime|null $end_time ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setEndTime($end_time)
+    {
+        $this->container['end_time'] = $end_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_renewal_of_subscription
+     *
+     * @return bool|null
+     */
+    public function getAutoRenewalOfSubscription()
+    {
+        return $this->container['auto_renewal_of_subscription'];
+    }
+
+    /**
+     * Sets auto_renewal_of_subscription
+     *
+     * @param bool|null $auto_renewal_of_subscription Info whether the subscription will be auto renewed upon expiry.
+     *
+     * @return self
+     */
+    public function setAutoRenewalOfSubscription($auto_renewal_of_subscription)
+    {
+        $this->container['auto_renewal_of_subscription'] = $auto_renewal_of_subscription;
+
+        return $this;
+    }
+
+    /**
+     * Gets affiliate_name
+     *
+     * @return string|null
+     */
+    public function getAffiliateName()
+    {
+        return $this->container['affiliate_name'];
+    }
+
+    /**
+     * Sets affiliate_name
+     *
+     * @param string|null $affiliate_name Name of the affiliate that originated the purchase. If none, leave blank.
+     *
+     * @return self
+     */
+    public function setAffiliateName($affiliate_name)
+    {
+        $this->container['affiliate_name'] = $affiliate_name;
 
         return $this;
     }

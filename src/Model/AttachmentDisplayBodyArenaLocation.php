@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyArenaLocation
  *
  * PHP version 7.2
  *
@@ -32,9 +32,10 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyArenaLocation Class Doc Comment
  *
  * @category Class
+ * @description Location of the arena.
  * @package  Klarna\Checkout
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -42,7 +43,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyArenaLocation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +52,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_arena_location';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +60,10 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'street_address' => 'string',
+        'postal_code' => 'string',
+        'city' => 'string',
+        'country' => 'string'
     ];
 
     /**
@@ -70,7 +74,10 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'street_address' => null,
+        'postal_code' => null,
+        'city' => null,
+        'country' => null
     ];
 
     /**
@@ -100,7 +107,10 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'street_address' => 'street_address',
+        'postal_code' => 'postal_code',
+        'city' => 'city',
+        'country' => 'country'
     ];
 
     /**
@@ -109,7 +119,10 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'street_address' => 'setStreetAddress',
+        'postal_code' => 'setPostalCode',
+        'city' => 'setCity',
+        'country' => 'setCountry'
     ];
 
     /**
@@ -118,7 +131,10 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'street_address' => 'getStreetAddress',
+        'postal_code' => 'getPostalCode',
+        'city' => 'getCity',
+        'country' => 'getCountry'
     ];
 
     /**
@@ -178,7 +194,10 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['street_address'] = $data['street_address'] ?? null;
+        $this->container['postal_code'] = $data['postal_code'] ?? null;
+        $this->container['city'] = $data['city'] ?? null;
+        $this->container['country'] = $data['country'] ?? null;
     }
 
     /**
@@ -206,25 +225,97 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets street_address
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getStreetAddress()
     {
-        return $this->container['options'];
+        return $this->container['street_address'];
     }
 
     /**
-     * Sets options
+     * Sets street_address
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $street_address street_address
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setStreetAddress($street_address)
     {
-        $this->container['options'] = $options;
+        $this->container['street_address'] = $street_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets postal_code
+     *
+     * @return string|null
+     */
+    public function getPostalCode()
+    {
+        return $this->container['postal_code'];
+    }
+
+    /**
+     * Sets postal_code
+     *
+     * @param string|null $postal_code postal_code
+     *
+     * @return self
+     */
+    public function setPostalCode($postal_code)
+    {
+        $this->container['postal_code'] = $postal_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets city
+     *
+     * @return string|null
+     */
+    public function getCity()
+    {
+        return $this->container['city'];
+    }
+
+    /**
+     * Sets city
+     *
+     * @param string|null $city city
+     *
+     * @return self
+     */
+    public function setCity($city)
+    {
+        $this->container['city'] = $city;
+
+        return $this;
+    }
+
+    /**
+     * Gets country
+     *
+     * @return string|null
+     */
+    public function getCountry()
+    {
+        return $this->container['country'];
+    }
+
+    /**
+     * Sets country
+     *
+     * @param string|null $country country
+     *
+     * @return self
+     */
+    public function setCountry($country)
+    {
+        $this->container['country'] = $country;
 
         return $this;
     }

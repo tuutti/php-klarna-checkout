@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyCustomerAccountInfo
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyCustomerAccountInfo Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyCustomerAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_customer_account_info';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'unique_account_identifier' => 'string',
+        'account_registration_date' => '\DateTime',
+        'account_last_modified' => '\DateTime'
     ];
 
     /**
@@ -70,7 +72,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'unique_account_identifier' => null,
+        'account_registration_date' => 'date-time',
+        'account_last_modified' => 'date-time'
     ];
 
     /**
@@ -100,7 +104,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'unique_account_identifier' => 'unique_account_identifier',
+        'account_registration_date' => 'account_registration_date',
+        'account_last_modified' => 'account_last_modified'
     ];
 
     /**
@@ -109,7 +115,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'unique_account_identifier' => 'setUniqueAccountIdentifier',
+        'account_registration_date' => 'setAccountRegistrationDate',
+        'account_last_modified' => 'setAccountLastModified'
     ];
 
     /**
@@ -118,7 +126,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'unique_account_identifier' => 'getUniqueAccountIdentifier',
+        'account_registration_date' => 'getAccountRegistrationDate',
+        'account_last_modified' => 'getAccountLastModified'
     ];
 
     /**
@@ -178,7 +188,9 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['unique_account_identifier'] = $data['unique_account_identifier'] ?? null;
+        $this->container['account_registration_date'] = $data['account_registration_date'] ?? null;
+        $this->container['account_last_modified'] = $data['account_last_modified'] ?? null;
     }
 
     /**
@@ -206,25 +218,73 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets unique_account_identifier
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getUniqueAccountIdentifier()
     {
-        return $this->container['options'];
+        return $this->container['unique_account_identifier'];
     }
 
     /**
-     * Sets options
+     * Sets unique_account_identifier
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $unique_account_identifier Unique name / number to identify the specific customer account. Max 24 characters. E.g. \"Adam Adamsson\"
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setUniqueAccountIdentifier($unique_account_identifier)
     {
-        $this->container['options'] = $options;
+        $this->container['unique_account_identifier'] = $unique_account_identifier;
+
+        return $this;
+    }
+
+    /**
+     * Gets account_registration_date
+     *
+     * @return \DateTime|null
+     */
+    public function getAccountRegistrationDate()
+    {
+        return $this->container['account_registration_date'];
+    }
+
+    /**
+     * Sets account_registration_date
+     *
+     * @param \DateTime|null $account_registration_date ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setAccountRegistrationDate($account_registration_date)
+    {
+        $this->container['account_registration_date'] = $account_registration_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets account_last_modified
+     *
+     * @return \DateTime|null
+     */
+    public function getAccountLastModified()
+    {
+        return $this->container['account_last_modified'];
+    }
+
+    /**
+     * Sets account_last_modified
+     *
+     * @param \DateTime|null $account_last_modified ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setAccountLastModified($account_last_modified)
+    {
+        $this->container['account_last_modified'] = $account_last_modified;
 
         return $this;
     }

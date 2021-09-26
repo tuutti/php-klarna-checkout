@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyVoucher
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyVoucher Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyVoucher implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_voucher';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'voucher_name' => 'string',
+        'voucher_company' => 'string',
+        'start_time' => '\DateTime',
+        'end_time' => '\DateTime',
+        'affiliate_name' => 'string'
     ];
 
     /**
@@ -70,7 +74,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'voucher_name' => null,
+        'voucher_company' => null,
+        'start_time' => 'date-time',
+        'end_time' => 'date-time',
+        'affiliate_name' => null
     ];
 
     /**
@@ -100,7 +108,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'voucher_name' => 'voucher_name',
+        'voucher_company' => 'voucher_company',
+        'start_time' => 'start_time',
+        'end_time' => 'end_time',
+        'affiliate_name' => 'affiliate_name'
     ];
 
     /**
@@ -109,7 +121,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'voucher_name' => 'setVoucherName',
+        'voucher_company' => 'setVoucherCompany',
+        'start_time' => 'setStartTime',
+        'end_time' => 'setEndTime',
+        'affiliate_name' => 'setAffiliateName'
     ];
 
     /**
@@ -118,7 +134,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'voucher_name' => 'getVoucherName',
+        'voucher_company' => 'getVoucherCompany',
+        'start_time' => 'getStartTime',
+        'end_time' => 'getEndTime',
+        'affiliate_name' => 'getAffiliateName'
     ];
 
     /**
@@ -178,7 +198,11 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['voucher_name'] = $data['voucher_name'] ?? null;
+        $this->container['voucher_company'] = $data['voucher_company'] ?? null;
+        $this->container['start_time'] = $data['start_time'] ?? null;
+        $this->container['end_time'] = $data['end_time'] ?? null;
+        $this->container['affiliate_name'] = $data['affiliate_name'] ?? null;
     }
 
     /**
@@ -206,25 +230,121 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets voucher_name
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getVoucherName()
     {
-        return $this->container['options'];
+        return $this->container['voucher_name'];
     }
 
     /**
-     * Sets options
+     * Sets voucher_name
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $voucher_name Description of the product the voucher entitles to, e.g. \"China trip\"
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setVoucherName($voucher_name)
     {
-        $this->container['options'] = $options;
+        $this->container['voucher_name'] = $voucher_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets voucher_company
+     *
+     * @return string|null
+     */
+    public function getVoucherCompany()
+    {
+        return $this->container['voucher_company'];
+    }
+
+    /**
+     * Sets voucher_company
+     *
+     * @param string|null $voucher_company Name of the company that will provide good / service upon voucher (not the same as the selling merchant), e.g. \"Sun Trips Ltd.\"
+     *
+     * @return self
+     */
+    public function setVoucherCompany($voucher_company)
+    {
+        $this->container['voucher_company'] = $voucher_company;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_time
+     *
+     * @return \DateTime|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param \DateTime|null $start_time ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setStartTime($start_time)
+    {
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_time
+     *
+     * @return \DateTime|null
+     */
+    public function getEndTime()
+    {
+        return $this->container['end_time'];
+    }
+
+    /**
+     * Sets end_time
+     *
+     * @param \DateTime|null $end_time ISO 8601 e.g. 2012-11-24T15:00
+     *
+     * @return self
+     */
+    public function setEndTime($end_time)
+    {
+        $this->container['end_time'] = $end_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets affiliate_name
+     *
+     * @return string|null
+     */
+    public function getAffiliateName()
+    {
+        return $this->container['affiliate_name'];
+    }
+
+    /**
+     * Sets affiliate_name
+     *
+     * @param string|null $affiliate_name Name of the affiliate that originated the purchase. If none, leave blank.
+     *
+     * @return self
+     */
+    public function setAffiliateName($affiliate_name)
+    {
+        $this->container['affiliate_name'] = $affiliate_name;
 
         return $this;
     }

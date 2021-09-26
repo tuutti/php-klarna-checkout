@@ -1,6 +1,6 @@
 <?php
 /**
- * Gui
+ * AttachmentDisplayBodyPaymentHistorySimple
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Gui Class Doc Comment
+ * AttachmentDisplayBodyPaymentHistorySimple Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
+class AttachmentDisplayBodyPaymentHistorySimple implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'gui';
+    protected static $openAPIModelName = 'attachment_display_body_payment_history_simple';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'options' => 'string[]'
+        'unique_account_identifier' => 'string',
+        'paid_before' => 'bool'
     ];
 
     /**
@@ -70,7 +71,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'options' => null
+        'unique_account_identifier' => null,
+        'paid_before' => null
     ];
 
     /**
@@ -100,7 +102,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'options' => 'options'
+        'unique_account_identifier' => 'unique_account_identifier',
+        'paid_before' => 'paid_before'
     ];
 
     /**
@@ -109,7 +112,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'options' => 'setOptions'
+        'unique_account_identifier' => 'setUniqueAccountIdentifier',
+        'paid_before' => 'setPaidBefore'
     ];
 
     /**
@@ -118,7 +122,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'options' => 'getOptions'
+        'unique_account_identifier' => 'getUniqueAccountIdentifier',
+        'paid_before' => 'getPaidBefore'
     ];
 
     /**
@@ -178,7 +183,8 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['options'] = $data['options'] ?? null;
+        $this->container['unique_account_identifier'] = $data['unique_account_identifier'] ?? null;
+        $this->container['paid_before'] = $data['paid_before'] ?? null;
     }
 
     /**
@@ -206,25 +212,49 @@ class Gui implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets options
+     * Gets unique_account_identifier
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getUniqueAccountIdentifier()
     {
-        return $this->container['options'];
+        return $this->container['unique_account_identifier'];
     }
 
     /**
-     * Sets options
+     * Sets unique_account_identifier
      *
-     * @param string[]|null $options An array of options to define the checkout behaviour. Supported options: minimal_confirmation.  The gui object is an array of options to modify checkout client ui behaviours.   Examples: [\"minimal_confirmation\"]
+     * @param string|null $unique_account_identifier Unique name / number to identify the specific customer account. Max 24 characters. E.g. \"Adam Adamsson\"
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setUniqueAccountIdentifier($unique_account_identifier)
     {
-        $this->container['options'] = $options;
+        $this->container['unique_account_identifier'] = $unique_account_identifier;
+
+        return $this;
+    }
+
+    /**
+     * Gets paid_before
+     *
+     * @return bool|null
+     */
+    public function getPaidBefore()
+    {
+        return $this->container['paid_before'];
+    }
+
+    /**
+     * Sets paid_before
+     *
+     * @param bool|null $paid_before Whether the customer has paid before or not
+     *
+     * @return self
+     */
+    public function setPaidBefore($paid_before)
+    {
+        $this->container['paid_before'] = $paid_before;
 
         return $this;
     }
