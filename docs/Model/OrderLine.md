@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **total_tax_amount** | **int** | Must be within ±1 of total_amount - total_amount \\* 10000 / (10000 + tax_rate). Negative when type is discount. |
 **merchant_data** | **string** | Property used to store additional metadata per item that will be returned whenever an order is read from Klarna. Pass through field. (max 1024 characters). | [optional]
 **product_url** | **string** | URL to the product page that can be later embedded in communications between Klarna and the customer. (max 1024 characters) | [optional]
-**image_url** | **string** | URL to an image that can be later embedded in communications between Klarna and the customer. (max 1024 characters)  Improves post-purchase customer experiences. | [optional]
+**image_url** | **string** | URL to an image that can be later embedded in communications between Klarna and the customer (max 1024 characters).   A minimum of 250x250px resolution is recommended for the image to look good in the app, and below 50x50px won&#39;t even show. We recommend using a good sized image (650x650px or more), however the file size must not exceed 12MB.  Improves post-purchase customer experiences. | [optional]
 **product_identifiers** | [**\Klarna\Checkout\Model\ProductIdentifiers**](ProductIdentifiers.md) |  | [optional]
 **shipping_attributes** | [**\Klarna\Checkout\Model\ShippingAttributes**](ShippingAttributes.md) |  | [optional]
 
