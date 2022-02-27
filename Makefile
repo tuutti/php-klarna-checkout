@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 PHONY :=
 COMMAND = openapi-generator-cli
+OPENAPI_VERSION ?= v5.2.0
 
 include .env
 export
@@ -18,9 +19,16 @@ fix-schema:
 
 PHONY += build-client
 build-client:
-	@$(COMMAND) generate -c $(NAME).config.json -i $(NAME).json -g php -o . --skip-validate-spec \
-		--git-host=github.com --git-repo-id=php-klarna-$(NAME) --git-user-id=tuutti \
-		--global-property apiTests=false
+	docker container run --rm -v ${PWD}:/app openapitools/openapi-generator-cli:$(OPENAPI_VERSION) \
+		generate \
+		$(OPENAPI_GENERATE_ARGS) \
+		--config /app/$(NAME).config.json \
+		--input-spec /app/$(NAME).json \
+		--generator-name php \
+		--output /app \
+		--git-host="$(GIT_HOST)" \
+		--git-repo-id="$(GIT_REPO_ID)" \
+		--git-user-id="$(GIT_USER_ID)"
 
 PHONY += fix-models
 fix-models:
