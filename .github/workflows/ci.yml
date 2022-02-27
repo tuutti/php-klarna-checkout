@@ -1,9 +1,13 @@
-on: [push]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron:  '0 0 * * 0'
 name: CI
 env:
   SIMPLETEST_DB: "mysql://drupal:drupal@mariadb:3306/drupal"
   SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
-  DRUPAL_CORE_VERSION: 9.1.x
+  DRUPAL_CORE_VERSION: 9.3.x
   KLARNA_LIBRARY_NAME: "php-klarna-checkout"
   SYMFONY_DEPRECATIONS_HELPER: disabled
 jobs:
@@ -12,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-version: ['7.4', '8.0']
+        php-version: ['7.4', '8.0', '8.1']
     container:
       image: ghcr.io/tuutti/drupal-php-docker:${{ matrix.php-version }}
 
@@ -51,7 +55,6 @@ jobs:
           composer require "drush/drush ^10.0"
           composer run-script drupal-phpunit-upgrade
           php -d sendmail_path=$(which true); vendor/bin/drush --yes -v site-install minimal --db-url="$SIMPLETEST_DB"
-          vendor/bin/drush -y en simpletest
 
       # Test library against drupal/commerce_klarna_payments module.
       - name: Run PHPUnit tests
@@ -59,4 +62,4 @@ jobs:
           cd $DRUPAL_ROOT
           vendor/bin/drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
           chromedriver --port=4444 > /dev/null 2>&1 &
-          php ./core/scripts/run-tests.sh --php /usr/local/bin/php --color --verbose --url $SIMPLETEST_BASE_URL commerce_klarna_payments
+          php ./core/scripts/run-tests.sh --php /usr/local/bin/php --color --verbose --sqlite /tmp/test.sqlite --url $SIMPLETEST_BASE_URL commerce_klarna_payments
