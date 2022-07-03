@@ -59,10 +59,10 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
         'text' => 'string',
         'checked' => 'bool',
-        'required' => 'bool'
+        'required' => 'bool',
+        'id' => 'string'
     ];
 
     /**
@@ -73,10 +73,10 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
         'text' => null,
         'checked' => null,
-        'required' => null
+        'required' => null,
+        'id' => null
     ];
 
     /**
@@ -106,10 +106,10 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
         'text' => 'text',
         'checked' => 'checked',
-        'required' => 'required'
+        'required' => 'required',
+        'id' => 'id'
     ];
 
     /**
@@ -118,10 +118,10 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
         'text' => 'setText',
         'checked' => 'setChecked',
-        'required' => 'setRequired'
+        'required' => 'setRequired',
+        'id' => 'setId'
     ];
 
     /**
@@ -130,10 +130,10 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
         'text' => 'getText',
         'checked' => 'getChecked',
-        'required' => 'getRequired'
+        'required' => 'getRequired',
+        'id' => 'getId'
     ];
 
     /**
@@ -193,10 +193,10 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = $data['id'] ?? null;
         $this->container['text'] = $data['text'] ?? null;
-        $this->container['checked'] = $data['checked'] ?? false;
-        $this->container['required'] = $data['required'] ?? false;
+        $this->container['checked'] = $data['checked'] ?? null;
+        $this->container['required'] = $data['required'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
     }
 
     /**
@@ -208,9 +208,6 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
         if ($this->container['text'] === null) {
             $invalidProperties[] = "'text' can't be null";
         }
@@ -219,6 +216,9 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['required'] === null) {
             $invalidProperties[] = "'required' can't be null";
+        }
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
         return $invalidProperties;
     }
@@ -234,30 +234,6 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id Identifier used when presenting data back to merchant
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
 
     /**
      * Gets text
@@ -327,6 +303,30 @@ class CheckboxV2 implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRequired($required)
     {
         $this->container['required'] = $required;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id Identifier used when presenting data back to merchant
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
 
         return $this;
     }

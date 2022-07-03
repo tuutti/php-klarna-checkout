@@ -1,6 +1,6 @@
 <?php
 /**
- * Checkbox
+ * Subscription
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * Checkbox Class Doc Comment
+ * Subscription Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
+class Subscription implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'checkbox';
+    protected static $openAPIModelName = 'subscription';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,9 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'text' => 'string',
-        'checked' => 'bool',
-        'required' => 'bool'
+        'name' => 'string',
+        'interval' => 'string',
+        'interval_count' => 'int'
     ];
 
     /**
@@ -72,9 +72,9 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'text' => null,
-        'checked' => null,
-        'required' => null
+        'name' => null,
+        'interval' => null,
+        'interval_count' => 'int32'
     ];
 
     /**
@@ -104,9 +104,9 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'text' => 'text',
-        'checked' => 'checked',
-        'required' => 'required'
+        'name' => 'name',
+        'interval' => 'interval',
+        'interval_count' => 'interval_count'
     ];
 
     /**
@@ -115,9 +115,9 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'text' => 'setText',
-        'checked' => 'setChecked',
-        'required' => 'setRequired'
+        'name' => 'setName',
+        'interval' => 'setInterval',
+        'interval_count' => 'setIntervalCount'
     ];
 
     /**
@@ -126,9 +126,9 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'text' => 'getText',
-        'checked' => 'getChecked',
-        'required' => 'getRequired'
+        'name' => 'getName',
+        'interval' => 'getInterval',
+        'interval_count' => 'getIntervalCount'
     ];
 
     /**
@@ -172,6 +172,25 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    const INTERVAL_DAY = 'DAY';
+    const INTERVAL_WEEK = 'WEEK';
+    const INTERVAL_MONTH = 'MONTH';
+    const INTERVAL_YEAR = 'YEAR';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getIntervalAllowableValues()
+    {
+        return [
+            self::INTERVAL_DAY,
+            self::INTERVAL_WEEK,
+            self::INTERVAL_MONTH,
+            self::INTERVAL_YEAR,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -188,9 +207,9 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['text'] = $data['text'] ?? null;
-        $this->container['checked'] = $data['checked'] ?? null;
-        $this->container['required'] = $data['required'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['interval'] = $data['interval'] ?? null;
+        $this->container['interval_count'] = $data['interval_count'] ?? null;
     }
 
     /**
@@ -202,15 +221,25 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['text'] === null) {
-            $invalidProperties[] = "'text' can't be null";
+        if ($this->container['interval'] === null) {
+            $invalidProperties[] = "'interval' can't be null";
         }
-        if ($this->container['checked'] === null) {
-            $invalidProperties[] = "'checked' can't be null";
+        $allowedValues = $this->getIntervalAllowableValues();
+        if (!is_null($this->container['interval']) && !in_array($this->container['interval'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'interval', must be one of '%s'",
+                $this->container['interval'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['required'] === null) {
-            $invalidProperties[] = "'required' can't be null";
+
+        if ($this->container['interval_count'] === null) {
+            $invalidProperties[] = "'interval_count' can't be null";
         }
+        if (($this->container['interval_count'] < 1)) {
+            $invalidProperties[] = "invalid value for 'interval_count', must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -227,73 +256,88 @@ class Checkbox implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets text
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name The name of the subscription product.  Example: \"Premium Account\"
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets interval
      *
      * @return string
      */
-    public function getText()
+    public function getInterval()
     {
-        return $this->container['text'];
+        return $this->container['interval'];
     }
 
     /**
-     * Sets text
+     * Sets interval
      *
-     * @param string $text Text that will be displayed to the consumer aside the checkbox. Links and formatting can be added using Markdown. (max 1000 characters)
+     * @param string $interval The cadence unit for this.  Example: \"DAY\"
      *
      * @return self
      */
-    public function setText($text)
+    public function setInterval($interval)
     {
-        $this->container['text'] = $text;
+        $allowedValues = $this->getIntervalAllowableValues();
+        if (!in_array($interval, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'interval', must be one of '%s'",
+                    $interval,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['interval'] = $interval;
 
         return $this;
     }
 
     /**
-     * Gets checked
+     * Gets interval_count
      *
-     * @return bool
+     * @return int
      */
-    public function getChecked()
+    public function getIntervalCount()
     {
-        return $this->container['checked'];
+        return $this->container['interval_count'];
     }
 
     /**
-     * Sets checked
+     * Sets interval_count
      *
-     * @param bool $checked Default state of the additional checkbox. It will use this value when loaded for the first time.
+     * @param int $interval_count The number of intervals.  Example: 30
      *
      * @return self
      */
-    public function setChecked($checked)
+    public function setIntervalCount($interval_count)
     {
-        $this->container['checked'] = $checked;
 
-        return $this;
-    }
+        if (($interval_count < 1)) {
+            throw new \InvalidArgumentException('invalid value for $interval_count when calling Subscription., must be bigger than or equal to 1.');
+        }
 
-    /**
-     * Gets required
-     *
-     * @return bool
-     */
-    public function getRequired()
-    {
-        return $this->container['required'];
-    }
-
-    /**
-     * Sets required
-     *
-     * @param bool $required Whether it is required for the consumer to check the additional checkbox box or not in order to complete the purchase.
-     *
-     * @return self
-     */
-    public function setRequired($required)
-    {
-        $this->container['required'] = $required;
+        $this->container['interval_count'] = $interval_count;
 
         return $this;
     }

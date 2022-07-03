@@ -115,36 +115,36 @@ class OrderApi
     }
 
     /**
-     * Operation createOrderMerchant
+     * Operation abortOrder
      *
-     * Create a new order
+     * Mark an order as aborted
      *
-     * @param  \Klarna\Checkout\Model\Order $body body (optional)
+     * @param  string $order_id order_id (required)
      *
      * @throws \Klarna\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Klarna\Checkout\Model\Order
      */
-    public function createOrderMerchant($body = null)
+    public function abortOrder($order_id)
     {
-        list($response) = $this->createOrderMerchantWithHttpInfo($body);
+        list($response) = $this->abortOrderWithHttpInfo($order_id);
         return $response;
     }
 
     /**
-     * Operation createOrderMerchantWithHttpInfo
+     * Operation abortOrderWithHttpInfo
      *
-     * Create a new order
+     * Mark an order as aborted
      *
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  string $order_id (required)
      *
      * @throws \Klarna\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Klarna\Checkout\Model\Order, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createOrderMerchantWithHttpInfo($body = null)
+    public function abortOrderWithHttpInfo($order_id)
     {
-        $request = $this->createOrderMerchantRequest($body);
+        $request = $this->abortOrderRequest($order_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -218,18 +218,289 @@ class OrderApi
     }
 
     /**
+     * Operation abortOrderAsync
+     *
+     * Mark an order as aborted
+     *
+     * @param  string $order_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function abortOrderAsync($order_id)
+    {
+        return $this->abortOrderAsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation abortOrderAsyncWithHttpInfo
+     *
+     * Mark an order as aborted
+     *
+     * @param  string $order_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function abortOrderAsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Klarna\Checkout\Model\Order';
+        $request = $this->abortOrderRequest($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'abortOrder'
+     *
+     * @param  string $order_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function abortOrderRequest($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null || (is_array($order_id) && count($order_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling abortOrder'
+            );
+        }
+
+        $resourcePath = '/checkout/v3/orders/{order_id}/abort';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['*/*']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['*/*'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createOrderMerchant
+     *
+     * Create a new order
+     *
+     * @param  string $klarna_partner klarna_partner (optional)
+     * @param  \Klarna\Checkout\Model\Order $body body (optional)
+     *
+     * @throws \Klarna\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Klarna\Checkout\Model\Order
+     */
+    public function createOrderMerchant($klarna_partner = null, $body = null)
+    {
+        list($response) = $this->createOrderMerchantWithHttpInfo($klarna_partner, $body);
+        return $response;
+    }
+
+    /**
+     * Operation createOrderMerchantWithHttpInfo
+     *
+     * Create a new order
+     *
+     * @param  string $klarna_partner (optional)
+     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     *
+     * @throws \Klarna\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Klarna\Checkout\Model\Order, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createOrderMerchantWithHttpInfo($klarna_partner = null, $body = null)
+    {
+        $request = $this->createOrderMerchantRequest($klarna_partner, $body);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\Klarna\Checkout\Model\Order' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Klarna\Checkout\Model\Order', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Klarna\Checkout\Model\Order';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Klarna\Checkout\Model\Order',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
      * Operation createOrderMerchantAsync
      *
      * Create a new order
      *
+     * @param  string $klarna_partner (optional)
      * @param  \Klarna\Checkout\Model\Order $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createOrderMerchantAsync($body = null)
+    public function createOrderMerchantAsync($klarna_partner = null, $body = null)
     {
-        return $this->createOrderMerchantAsyncWithHttpInfo($body)
+        return $this->createOrderMerchantAsyncWithHttpInfo($klarna_partner, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -242,15 +513,16 @@ class OrderApi
      *
      * Create a new order
      *
+     * @param  string $klarna_partner (optional)
      * @param  \Klarna\Checkout\Model\Order $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createOrderMerchantAsyncWithHttpInfo($body = null)
+    public function createOrderMerchantAsyncWithHttpInfo($klarna_partner = null, $body = null)
     {
         $returnType = '\Klarna\Checkout\Model\Order';
-        $request = $this->createOrderMerchantRequest($body);
+        $request = $this->createOrderMerchantRequest($klarna_partner, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -288,12 +560,13 @@ class OrderApi
     /**
      * Create request for operation 'createOrderMerchant'
      *
+     * @param  string $klarna_partner (optional)
      * @param  \Klarna\Checkout\Model\Order $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createOrderMerchantRequest($body = null)
+    public function createOrderMerchantRequest($klarna_partner = null, $body = null)
     {
 
         $resourcePath = '/checkout/v3/orders';
@@ -304,6 +577,10 @@ class OrderApi
         $multipart = false;
 
 
+        // header params
+        if ($klarna_partner !== null) {
+            $headerParams['Klarna-Partner'] = ObjectSerializer::toHeaderValue($klarna_partner);
+        }
 
 
 

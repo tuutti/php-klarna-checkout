@@ -10,6 +10,7 @@ docs/Model/CheckboxV2.md
 docs/Model/Customer.md
 docs/Model/DeliveryDetailsV1.md
 docs/Model/Dimensions.md
+docs/Model/DiscountLine.md
 docs/Model/Gui.md
 docs/Model/MerchantRequested.md
 docs/Model/MerchantRequestedCheckbox.md
@@ -24,6 +25,7 @@ docs/Model/ProductV1.md
 docs/Model/SelectedAddon.md
 docs/Model/ShippingAttributes.md
 docs/Model/ShippingOption.md
+docs/Model/Subscription.md
 docs/Model/TimeslotV1.md
 git_push.sh
 phpunit.xml.dist
@@ -38,6 +40,7 @@ src/Model/CheckboxV2.php
 src/Model/Customer.php
 src/Model/DeliveryDetailsV1.php
 src/Model/Dimensions.php
+src/Model/DiscountLine.php
 src/Model/Gui.php
 src/Model/MerchantRequested.php
 src/Model/MerchantRequestedCheckbox.php
@@ -53,5 +56,6 @@ src/Model/ProductV1.php
 src/Model/SelectedAddon.php
 src/Model/ShippingAttributes.php
 src/Model/ShippingOption.php
+src/Model/Subscription.php
 src/Model/TimeslotV1.php
 src/ObjectSerializer.php

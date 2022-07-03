@@ -183,7 +183,7 @@ class MerchantRequested implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['additional_checkbox'] = $data['additional_checkbox'] ?? false;
+        $this->container['additional_checkbox'] = $data['additional_checkbox'] ?? null;
         $this->container['additional_checkboxes'] = $data['additional_checkboxes'] ?? null;
     }
 

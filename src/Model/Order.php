@@ -59,23 +59,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'status' => 'string',
-        'locale' => 'string',
-        'customer' => '\Klarna\Checkout\Model\Customer',
-        'options' => '\Klarna\Checkout\Model\Options',
-        'attachment' => '\Klarna\Checkout\Model\Attachment',
-        'gui' => '\Klarna\Checkout\Model\Gui',
-        'recurring' => 'bool',
-        'tags' => 'string[]',
         'order_id' => 'string',
+        'name' => 'string',
         'purchase_country' => 'string',
         'purchase_currency' => 'string',
+        'locale' => 'string',
+        'status' => 'string',
         'billing_address' => '\Klarna\Checkout\Model\Address',
         'shipping_address' => '\Klarna\Checkout\Model\Address',
         'order_amount' => 'int',
         'order_tax_amount' => 'int',
         'order_lines' => '\Klarna\Checkout\Model\OrderLine[]',
+        'customer' => '\Klarna\Checkout\Model\Customer',
         'merchant_urls' => '\Klarna\Checkout\Model\MerchantUrls',
         'html_snippet' => 'string',
         'merchant_reference1' => 'string',
@@ -83,16 +78,22 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'started_at' => '\DateTime',
         'completed_at' => '\DateTime',
         'last_modified_at' => '\DateTime',
+        'options' => '\Klarna\Checkout\Model\Options',
+        'attachment' => '\Klarna\Checkout\Model\Attachment',
         'external_payment_methods' => '\Klarna\Checkout\Model\PaymentProvider[]',
         'external_checkouts' => '\Klarna\Checkout\Model\PaymentProvider[]',
         'shipping_countries' => 'string[]',
         'shipping_options' => '\Klarna\Checkout\Model\ShippingOption[]',
         'merchant_data' => 'string',
+        'gui' => '\Klarna\Checkout\Model\Gui',
         'merchant_requested' => '\Klarna\Checkout\Model\MerchantRequested',
         'selected_shipping_option' => '\Klarna\Checkout\Model\ShippingOption',
+        'recurring' => 'bool',
         'recurring_token' => 'string',
         'recurring_description' => 'string',
-        'billing_countries' => 'string[]'
+        'billing_countries' => 'string[]',
+        'tags' => 'string[]',
+        'discount_lines' => '\Klarna\Checkout\Model\DiscountLine[]'
     ];
 
     /**
@@ -103,23 +104,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'status' => null,
-        'locale' => null,
-        'customer' => null,
-        'options' => null,
-        'attachment' => null,
-        'gui' => null,
-        'recurring' => null,
-        'tags' => null,
         'order_id' => null,
+        'name' => null,
         'purchase_country' => null,
         'purchase_currency' => null,
+        'locale' => null,
+        'status' => null,
         'billing_address' => null,
         'shipping_address' => null,
         'order_amount' => 'int64',
         'order_tax_amount' => 'int64',
         'order_lines' => null,
+        'customer' => null,
         'merchant_urls' => null,
         'html_snippet' => null,
         'merchant_reference1' => null,
@@ -127,16 +123,22 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'started_at' => 'date-time',
         'completed_at' => 'date-time',
         'last_modified_at' => 'date-time',
+        'options' => null,
+        'attachment' => null,
         'external_payment_methods' => null,
         'external_checkouts' => null,
         'shipping_countries' => null,
         'shipping_options' => null,
         'merchant_data' => null,
+        'gui' => null,
         'merchant_requested' => null,
         'selected_shipping_option' => null,
+        'recurring' => null,
         'recurring_token' => null,
         'recurring_description' => null,
-        'billing_countries' => null
+        'billing_countries' => null,
+        'tags' => null,
+        'discount_lines' => null
     ];
 
     /**
@@ -166,23 +168,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'status' => 'status',
-        'locale' => 'locale',
-        'customer' => 'customer',
-        'options' => 'options',
-        'attachment' => 'attachment',
-        'gui' => 'gui',
-        'recurring' => 'recurring',
-        'tags' => 'tags',
         'order_id' => 'order_id',
+        'name' => 'name',
         'purchase_country' => 'purchase_country',
         'purchase_currency' => 'purchase_currency',
+        'locale' => 'locale',
+        'status' => 'status',
         'billing_address' => 'billing_address',
         'shipping_address' => 'shipping_address',
         'order_amount' => 'order_amount',
         'order_tax_amount' => 'order_tax_amount',
         'order_lines' => 'order_lines',
+        'customer' => 'customer',
         'merchant_urls' => 'merchant_urls',
         'html_snippet' => 'html_snippet',
         'merchant_reference1' => 'merchant_reference1',
@@ -190,16 +187,22 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'started_at' => 'started_at',
         'completed_at' => 'completed_at',
         'last_modified_at' => 'last_modified_at',
+        'options' => 'options',
+        'attachment' => 'attachment',
         'external_payment_methods' => 'external_payment_methods',
         'external_checkouts' => 'external_checkouts',
         'shipping_countries' => 'shipping_countries',
         'shipping_options' => 'shipping_options',
         'merchant_data' => 'merchant_data',
+        'gui' => 'gui',
         'merchant_requested' => 'merchant_requested',
         'selected_shipping_option' => 'selected_shipping_option',
+        'recurring' => 'recurring',
         'recurring_token' => 'recurring_token',
         'recurring_description' => 'recurring_description',
-        'billing_countries' => 'billing_countries'
+        'billing_countries' => 'billing_countries',
+        'tags' => 'tags',
+        'discount_lines' => 'discount_lines'
     ];
 
     /**
@@ -208,23 +211,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'status' => 'setStatus',
-        'locale' => 'setLocale',
-        'customer' => 'setCustomer',
-        'options' => 'setOptions',
-        'attachment' => 'setAttachment',
-        'gui' => 'setGui',
-        'recurring' => 'setRecurring',
-        'tags' => 'setTags',
         'order_id' => 'setOrderId',
+        'name' => 'setName',
         'purchase_country' => 'setPurchaseCountry',
         'purchase_currency' => 'setPurchaseCurrency',
+        'locale' => 'setLocale',
+        'status' => 'setStatus',
         'billing_address' => 'setBillingAddress',
         'shipping_address' => 'setShippingAddress',
         'order_amount' => 'setOrderAmount',
         'order_tax_amount' => 'setOrderTaxAmount',
         'order_lines' => 'setOrderLines',
+        'customer' => 'setCustomer',
         'merchant_urls' => 'setMerchantUrls',
         'html_snippet' => 'setHtmlSnippet',
         'merchant_reference1' => 'setMerchantReference1',
@@ -232,16 +230,22 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'started_at' => 'setStartedAt',
         'completed_at' => 'setCompletedAt',
         'last_modified_at' => 'setLastModifiedAt',
+        'options' => 'setOptions',
+        'attachment' => 'setAttachment',
         'external_payment_methods' => 'setExternalPaymentMethods',
         'external_checkouts' => 'setExternalCheckouts',
         'shipping_countries' => 'setShippingCountries',
         'shipping_options' => 'setShippingOptions',
         'merchant_data' => 'setMerchantData',
+        'gui' => 'setGui',
         'merchant_requested' => 'setMerchantRequested',
         'selected_shipping_option' => 'setSelectedShippingOption',
+        'recurring' => 'setRecurring',
         'recurring_token' => 'setRecurringToken',
         'recurring_description' => 'setRecurringDescription',
-        'billing_countries' => 'setBillingCountries'
+        'billing_countries' => 'setBillingCountries',
+        'tags' => 'setTags',
+        'discount_lines' => 'setDiscountLines'
     ];
 
     /**
@@ -250,23 +254,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'status' => 'getStatus',
-        'locale' => 'getLocale',
-        'customer' => 'getCustomer',
-        'options' => 'getOptions',
-        'attachment' => 'getAttachment',
-        'gui' => 'getGui',
-        'recurring' => 'getRecurring',
-        'tags' => 'getTags',
         'order_id' => 'getOrderId',
+        'name' => 'getName',
         'purchase_country' => 'getPurchaseCountry',
         'purchase_currency' => 'getPurchaseCurrency',
+        'locale' => 'getLocale',
+        'status' => 'getStatus',
         'billing_address' => 'getBillingAddress',
         'shipping_address' => 'getShippingAddress',
         'order_amount' => 'getOrderAmount',
         'order_tax_amount' => 'getOrderTaxAmount',
         'order_lines' => 'getOrderLines',
+        'customer' => 'getCustomer',
         'merchant_urls' => 'getMerchantUrls',
         'html_snippet' => 'getHtmlSnippet',
         'merchant_reference1' => 'getMerchantReference1',
@@ -274,16 +273,22 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'started_at' => 'getStartedAt',
         'completed_at' => 'getCompletedAt',
         'last_modified_at' => 'getLastModifiedAt',
+        'options' => 'getOptions',
+        'attachment' => 'getAttachment',
         'external_payment_methods' => 'getExternalPaymentMethods',
         'external_checkouts' => 'getExternalCheckouts',
         'shipping_countries' => 'getShippingCountries',
         'shipping_options' => 'getShippingOptions',
         'merchant_data' => 'getMerchantData',
+        'gui' => 'getGui',
         'merchant_requested' => 'getMerchantRequested',
         'selected_shipping_option' => 'getSelectedShippingOption',
+        'recurring' => 'getRecurring',
         'recurring_token' => 'getRecurringToken',
         'recurring_description' => 'getRecurringDescription',
-        'billing_countries' => 'getBillingCountries'
+        'billing_countries' => 'getBillingCountries',
+        'tags' => 'getTags',
+        'discount_lines' => 'getDiscountLines'
     ];
 
     /**
@@ -343,23 +348,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['locale'] = $data['locale'] ?? null;
-        $this->container['customer'] = $data['customer'] ?? null;
-        $this->container['options'] = $data['options'] ?? null;
-        $this->container['attachment'] = $data['attachment'] ?? null;
-        $this->container['gui'] = $data['gui'] ?? null;
-        $this->container['recurring'] = $data['recurring'] ?? false;
-        $this->container['tags'] = $data['tags'] ?? null;
         $this->container['order_id'] = $data['order_id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
         $this->container['purchase_country'] = $data['purchase_country'] ?? null;
         $this->container['purchase_currency'] = $data['purchase_currency'] ?? null;
+        $this->container['locale'] = $data['locale'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
         $this->container['billing_address'] = $data['billing_address'] ?? null;
         $this->container['shipping_address'] = $data['shipping_address'] ?? null;
         $this->container['order_amount'] = $data['order_amount'] ?? null;
         $this->container['order_tax_amount'] = $data['order_tax_amount'] ?? null;
         $this->container['order_lines'] = $data['order_lines'] ?? null;
+        $this->container['customer'] = $data['customer'] ?? null;
         $this->container['merchant_urls'] = $data['merchant_urls'] ?? null;
         $this->container['html_snippet'] = $data['html_snippet'] ?? null;
         $this->container['merchant_reference1'] = $data['merchant_reference1'] ?? null;
@@ -367,16 +367,22 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['started_at'] = $data['started_at'] ?? null;
         $this->container['completed_at'] = $data['completed_at'] ?? null;
         $this->container['last_modified_at'] = $data['last_modified_at'] ?? null;
+        $this->container['options'] = $data['options'] ?? null;
+        $this->container['attachment'] = $data['attachment'] ?? null;
         $this->container['external_payment_methods'] = $data['external_payment_methods'] ?? null;
         $this->container['external_checkouts'] = $data['external_checkouts'] ?? null;
         $this->container['shipping_countries'] = $data['shipping_countries'] ?? null;
         $this->container['shipping_options'] = $data['shipping_options'] ?? null;
         $this->container['merchant_data'] = $data['merchant_data'] ?? null;
+        $this->container['gui'] = $data['gui'] ?? null;
         $this->container['merchant_requested'] = $data['merchant_requested'] ?? null;
         $this->container['selected_shipping_option'] = $data['selected_shipping_option'] ?? null;
+        $this->container['recurring'] = $data['recurring'] ?? null;
         $this->container['recurring_token'] = $data['recurring_token'] ?? null;
         $this->container['recurring_description'] = $data['recurring_description'] ?? null;
         $this->container['billing_countries'] = $data['billing_countries'] ?? null;
+        $this->container['tags'] = $data['tags'] ?? null;
+        $this->container['discount_lines'] = $data['discount_lines'] ?? null;
     }
 
     /**
@@ -387,13 +393,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if ($this->container['locale'] === null) {
-            $invalidProperties[] = "'locale' can't be null";
-        }
-        if (!preg_match("/^[A-Za-z]{2,2}(?:-[A-Za-z]{2,2})*$/", $this->container['locale'])) {
-            $invalidProperties[] = "invalid value for 'locale', must be conform to the pattern /^[A-Za-z]{2,2}(?:-[A-Za-z]{2,2})*$/.";
-        }
 
         if ($this->container['purchase_country'] === null) {
             $invalidProperties[] = "'purchase_country' can't be null";
@@ -407,6 +406,13 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if (!preg_match("/^[A-Za-z]{3,3}$/", $this->container['purchase_currency'])) {
             $invalidProperties[] = "invalid value for 'purchase_currency', must be conform to the pattern /^[A-Za-z]{3,3}$/.";
+        }
+
+        if ($this->container['locale'] === null) {
+            $invalidProperties[] = "'locale' can't be null";
+        }
+        if (!preg_match("/^[A-Za-z]{2,2}(?:-[A-Za-z]{2,2})*$/", $this->container['locale'])) {
+            $invalidProperties[] = "invalid value for 'locale', must be conform to the pattern /^[A-Za-z]{2,2}(?:-[A-Za-z]{2,2})*$/.";
         }
 
         if ($this->container['order_amount'] === null) {
@@ -482,6 +488,30 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets order_id
+     *
+     * @return string|null
+     */
+    public function getOrderId()
+    {
+        return $this->container['order_id'];
+    }
+
+    /**
+     * Sets order_id
+     *
+     * @param string|null $order_id Unique order ID that will be used for the entire lifecycle of the order. (max 255 characters)
+     *
+     * @return self
+     */
+    public function setOrderId($order_id)
+    {
+        $this->container['order_id'] = $order_id;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
      * @return string|null
@@ -506,25 +536,59 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets status
+     * Gets purchase_country
      *
-     * @return string|null
+     * @return string
      */
-    public function getStatus()
+    public function getPurchaseCountry()
     {
-        return $this->container['status'];
+        return $this->container['purchase_country'];
     }
 
     /**
-     * Sets status
+     * Sets purchase_country
      *
-     * @param string|null $status The current status of the order. The status will be ‘incomplete’ until the customer has been successfully authorized.
+     * @param string $purchase_country The purchase country of the merchant's store. The format to be used is ISO 3166 alpha-2. Eg: GB, SE, DE, US, etc.   Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://docs.klarna.com/klarna-checkout/popular-use-cases/selling-to-multiple-countries/
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setPurchaseCountry($purchase_country)
     {
-        $this->container['status'] = $status;
+
+        if ((!preg_match("/^[A-Za-z]{2,2}$/", $purchase_country))) {
+            throw new \InvalidArgumentException("invalid value for $purchase_country when calling Order., must conform to the pattern /^[A-Za-z]{2,2}$/.");
+        }
+
+        $this->container['purchase_country'] = $purchase_country;
+
+        return $this;
+    }
+
+    /**
+     * Gets purchase_currency
+     *
+     * @return string
+     */
+    public function getPurchaseCurrency()
+    {
+        return $this->container['purchase_currency'];
+    }
+
+    /**
+     * Sets purchase_currency
+     *
+     * @param string $purchase_currency The purchase currency of the merchant's store. The format to be used is ISO 4217. Eg: USD, EUR, SEK, GBP, etc.  Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://docs.klarna.com/klarna-checkout/popular-use-cases/selling-to-multiple-countries/
+     *
+     * @return self
+     */
+    public function setPurchaseCurrency($purchase_currency)
+    {
+
+        if ((!preg_match("/^[A-Za-z]{3,3}$/", $purchase_currency))) {
+            throw new \InvalidArgumentException("invalid value for $purchase_currency when calling Order., must conform to the pattern /^[A-Za-z]{3,3}$/.");
+        }
+
+        $this->container['purchase_currency'] = $purchase_currency;
 
         return $this;
     }
@@ -559,227 +623,25 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets customer
-     *
-     * @return \Klarna\Checkout\Model\Customer|null
-     */
-    public function getCustomer()
-    {
-        return $this->container['customer'];
-    }
-
-    /**
-     * Sets customer
-     *
-     * @param \Klarna\Checkout\Model\Customer|null $customer customer
-     *
-     * @return self
-     */
-    public function setCustomer($customer)
-    {
-        $this->container['customer'] = $customer;
-
-        return $this;
-    }
-
-    /**
-     * Gets options
-     *
-     * @return \Klarna\Checkout\Model\Options|null
-     */
-    public function getOptions()
-    {
-        return $this->container['options'];
-    }
-
-    /**
-     * Sets options
-     *
-     * @param \Klarna\Checkout\Model\Options|null $options options
-     *
-     * @return self
-     */
-    public function setOptions($options)
-    {
-        $this->container['options'] = $options;
-
-        return $this;
-    }
-
-    /**
-     * Gets attachment
-     *
-     * @return \Klarna\Checkout\Model\Attachment|null
-     */
-    public function getAttachment()
-    {
-        return $this->container['attachment'];
-    }
-
-    /**
-     * Sets attachment
-     *
-     * @param \Klarna\Checkout\Model\Attachment|null $attachment attachment
-     *
-     * @return self
-     */
-    public function setAttachment($attachment)
-    {
-        $this->container['attachment'] = $attachment;
-
-        return $this;
-    }
-
-    /**
-     * Gets gui
-     *
-     * @return \Klarna\Checkout\Model\Gui|null
-     */
-    public function getGui()
-    {
-        return $this->container['gui'];
-    }
-
-    /**
-     * Sets gui
-     *
-     * @param \Klarna\Checkout\Model\Gui|null $gui gui
-     *
-     * @return self
-     */
-    public function setGui($gui)
-    {
-        $this->container['gui'] = $gui;
-
-        return $this;
-    }
-
-    /**
-     * Gets recurring
-     *
-     * @return bool|null
-     */
-    public function getRecurring()
-    {
-        return $this->container['recurring'];
-    }
-
-    /**
-     * Sets recurring
-     *
-     * @param bool|null $recurring Indicates whether this purchase will create a token that can be used by the merchant to create recurring purchases. This must be enabled for the merchant to use. Default: false  Depending on specified country, recurring could be used for the following payment methods: Pay Later, Direct Debit, Card.
-     *
-     * @return self
-     */
-    public function setRecurring($recurring)
-    {
-        $this->container['recurring'] = $recurring;
-
-        return $this;
-    }
-
-    /**
-     * Gets tags
-     *
-     * @return string[]|null
-     */
-    public function getTags()
-    {
-        return $this->container['tags'];
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param string[]|null $tags Extra information added to the order.  Example: [\"dangerous_goods\", \"bulky\"]
-     *
-     * @return self
-     */
-    public function setTags($tags)
-    {
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_id
+     * Gets status
      *
      * @return string|null
      */
-    public function getOrderId()
+    public function getStatus()
     {
-        return $this->container['order_id'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets order_id
+     * Sets status
      *
-     * @param string|null $order_id Unique order ID that will be used for the entire lifecycle of the order. (max 255 characters)
+     * @param string|null $status The current status of the order. The status will be ‘incomplete’ until the customer has been successfully authorized.
      *
      * @return self
      */
-    public function setOrderId($order_id)
+    public function setStatus($status)
     {
-        $this->container['order_id'] = $order_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets purchase_country
-     *
-     * @return string
-     */
-    public function getPurchaseCountry()
-    {
-        return $this->container['purchase_country'];
-    }
-
-    /**
-     * Sets purchase_country
-     *
-     * @param string $purchase_country The purchase country of the merchant's store. The format to be used is ISO 3166 alpha-2. Eg: GB, SE, DE, US, etc.   Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
-     *
-     * @return self
-     */
-    public function setPurchaseCountry($purchase_country)
-    {
-
-        if ((!preg_match("/^[A-Za-z]{2,2}$/", $purchase_country))) {
-            throw new \InvalidArgumentException("invalid value for $purchase_country when calling Order., must conform to the pattern /^[A-Za-z]{2,2}$/.");
-        }
-
-        $this->container['purchase_country'] = $purchase_country;
-
-        return $this;
-    }
-
-    /**
-     * Gets purchase_currency
-     *
-     * @return string
-     */
-    public function getPurchaseCurrency()
-    {
-        return $this->container['purchase_currency'];
-    }
-
-    /**
-     * Sets purchase_currency
-     *
-     * @param string $purchase_currency The purchase currency of the merchant's store. The format to be used is ISO 4217. Eg: USD, EUR, SEK, GBP, etc.  Note: purchase country and currency need to match the defined merchant configuration. For global configuration read this https://developers.klarna.com/documentation/klarna-checkout/kco-global/
-     *
-     * @return self
-     */
-    public function setPurchaseCurrency($purchase_currency)
-    {
-
-        if ((!preg_match("/^[A-Za-z]{3,3}$/", $purchase_currency))) {
-            throw new \InvalidArgumentException("invalid value for $purchase_currency when calling Order., must conform to the pattern /^[A-Za-z]{3,3}$/.");
-        }
-
-        $this->container['purchase_currency'] = $purchase_currency;
+        $this->container['status'] = $status;
 
         return $this;
     }
@@ -917,6 +779,30 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $order_lines when calling Order., number of items must be greater than or equal to 0.');
         }
         $this->container['order_lines'] = $order_lines;
+
+        return $this;
+    }
+
+    /**
+     * Gets customer
+     *
+     * @return \Klarna\Checkout\Model\Customer|null
+     */
+    public function getCustomer()
+    {
+        return $this->container['customer'];
+    }
+
+    /**
+     * Sets customer
+     *
+     * @param \Klarna\Checkout\Model\Customer|null $customer customer
+     *
+     * @return self
+     */
+    public function setCustomer($customer)
+    {
+        $this->container['customer'] = $customer;
 
         return $this;
     }
@@ -1104,6 +990,54 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets options
+     *
+     * @return \Klarna\Checkout\Model\Options|null
+     */
+    public function getOptions()
+    {
+        return $this->container['options'];
+    }
+
+    /**
+     * Sets options
+     *
+     * @param \Klarna\Checkout\Model\Options|null $options options
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        $this->container['options'] = $options;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachment
+     *
+     * @return \Klarna\Checkout\Model\Attachment|null
+     */
+    public function getAttachment()
+    {
+        return $this->container['attachment'];
+    }
+
+    /**
+     * Sets attachment
+     *
+     * @param \Klarna\Checkout\Model\Attachment|null $attachment attachment
+     *
+     * @return self
+     */
+    public function setAttachment($attachment)
+    {
+        $this->container['attachment'] = $attachment;
+
+        return $this;
+    }
+
+    /**
      * Gets external_payment_methods
      *
      * @return \Klarna\Checkout\Model\PaymentProvider[]|null
@@ -1231,6 +1165,30 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets gui
+     *
+     * @return \Klarna\Checkout\Model\Gui|null
+     */
+    public function getGui()
+    {
+        return $this->container['gui'];
+    }
+
+    /**
+     * Sets gui
+     *
+     * @param \Klarna\Checkout\Model\Gui|null $gui gui
+     *
+     * @return self
+     */
+    public function setGui($gui)
+    {
+        $this->container['gui'] = $gui;
+
+        return $this;
+    }
+
+    /**
      * Gets merchant_requested
      *
      * @return \Klarna\Checkout\Model\MerchantRequested|null
@@ -1274,6 +1232,30 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSelectedShippingOption($selected_shipping_option)
     {
         $this->container['selected_shipping_option'] = $selected_shipping_option;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurring
+     *
+     * @return bool|null
+     */
+    public function getRecurring()
+    {
+        return $this->container['recurring'];
+    }
+
+    /**
+     * Sets recurring
+     *
+     * @param bool|null $recurring Indicates whether this purchase will create a token that can be used by the merchant to create recurring purchases. This must be enabled for the merchant to use. Default: false  Depending on specified country, recurring could be used for the following payment methods: Pay Later, Direct Debit, Card.
+     *
+     * @return self
+     */
+    public function setRecurring($recurring)
+    {
+        $this->container['recurring'] = $recurring;
 
         return $this;
     }
@@ -1353,6 +1335,54 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBillingCountries($billing_countries)
     {
         $this->container['billing_countries'] = $billing_countries;
+
+        return $this;
+    }
+
+    /**
+     * Gets tags
+     *
+     * @return string[]|null
+     */
+    public function getTags()
+    {
+        return $this->container['tags'];
+    }
+
+    /**
+     * Sets tags
+     *
+     * @param string[]|null $tags Extra information added to the order.  Example: [\"dangerous_goods\", \"bulky\"]
+     *
+     * @return self
+     */
+    public function setTags($tags)
+    {
+        $this->container['tags'] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets discount_lines
+     *
+     * @return \Klarna\Checkout\Model\DiscountLine[]|null
+     */
+    public function getDiscountLines()
+    {
+        return $this->container['discount_lines'];
+    }
+
+    /**
+     * Sets discount_lines
+     *
+     * @param \Klarna\Checkout\Model\DiscountLine[]|null $discount_lines List of discounts applied to this order via the KCO discount-service
+     *
+     * @return self
+     */
+    public function setDiscountLines($discount_lines)
+    {
+        $this->container['discount_lines'] = $discount_lines;
 
         return $this;
     }

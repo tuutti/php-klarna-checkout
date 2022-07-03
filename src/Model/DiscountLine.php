@@ -1,6 +1,6 @@
 <?php
 /**
- * ShippingOption
+ * DiscountLine
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Klarna\ObjectSerializer;
 
 /**
- * ShippingOption Class Doc Comment
+ * DiscountLine Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
@@ -42,7 +42,7 @@ use \Klarna\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
+class DiscountLine implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'shipping_option';
+    protected static $openAPIModelName = 'discount_line';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,18 +59,14 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
         'name' => 'string',
-        'description' => 'string',
-        'promo' => 'string',
-        'price' => 'int',
-        'preselected' => 'bool',
-        'tax_amount' => 'int',
+        'quantity' => 'int',
+        'unit_price' => 'int',
         'tax_rate' => 'int',
-        'shipping_method' => 'string',
-        'delivery_details' => '\Klarna\Checkout\Model\DeliveryDetailsV1',
-        'tms_reference' => 'string',
-        'selected_addons' => '\Klarna\Checkout\Model\SelectedAddon[]'
+        'total_amount' => 'int',
+        'total_tax_amount' => 'int',
+        'reference' => 'string',
+        'merchant_data' => 'string'
     ];
 
     /**
@@ -81,18 +77,14 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
         'name' => null,
-        'description' => null,
-        'promo' => null,
-        'price' => 'int64',
-        'preselected' => null,
-        'tax_amount' => 'int64',
+        'quantity' => 'int64',
+        'unit_price' => 'int64',
         'tax_rate' => 'int64',
-        'shipping_method' => null,
-        'delivery_details' => null,
-        'tms_reference' => null,
-        'selected_addons' => null
+        'total_amount' => 'int64',
+        'total_tax_amount' => 'int64',
+        'reference' => null,
+        'merchant_data' => null
     ];
 
     /**
@@ -122,18 +114,14 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
         'name' => 'name',
-        'description' => 'description',
-        'promo' => 'promo',
-        'price' => 'price',
-        'preselected' => 'preselected',
-        'tax_amount' => 'tax_amount',
+        'quantity' => 'quantity',
+        'unit_price' => 'unit_price',
         'tax_rate' => 'tax_rate',
-        'shipping_method' => 'shipping_method',
-        'delivery_details' => 'delivery_details',
-        'tms_reference' => 'tms_reference',
-        'selected_addons' => 'selected_addons'
+        'total_amount' => 'total_amount',
+        'total_tax_amount' => 'total_tax_amount',
+        'reference' => 'reference',
+        'merchant_data' => 'merchant_data'
     ];
 
     /**
@@ -142,18 +130,14 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
         'name' => 'setName',
-        'description' => 'setDescription',
-        'promo' => 'setPromo',
-        'price' => 'setPrice',
-        'preselected' => 'setPreselected',
-        'tax_amount' => 'setTaxAmount',
+        'quantity' => 'setQuantity',
+        'unit_price' => 'setUnitPrice',
         'tax_rate' => 'setTaxRate',
-        'shipping_method' => 'setShippingMethod',
-        'delivery_details' => 'setDeliveryDetails',
-        'tms_reference' => 'setTmsReference',
-        'selected_addons' => 'setSelectedAddons'
+        'total_amount' => 'setTotalAmount',
+        'total_tax_amount' => 'setTotalTaxAmount',
+        'reference' => 'setReference',
+        'merchant_data' => 'setMerchantData'
     ];
 
     /**
@@ -162,18 +146,14 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
         'name' => 'getName',
-        'description' => 'getDescription',
-        'promo' => 'getPromo',
-        'price' => 'getPrice',
-        'preselected' => 'getPreselected',
-        'tax_amount' => 'getTaxAmount',
+        'quantity' => 'getQuantity',
+        'unit_price' => 'getUnitPrice',
         'tax_rate' => 'getTaxRate',
-        'shipping_method' => 'getShippingMethod',
-        'delivery_details' => 'getDeliveryDetails',
-        'tms_reference' => 'getTmsReference',
-        'selected_addons' => 'getSelectedAddons'
+        'total_amount' => 'getTotalAmount',
+        'total_tax_amount' => 'getTotalTaxAmount',
+        'reference' => 'getReference',
+        'merchant_data' => 'getMerchantData'
     ];
 
     /**
@@ -233,18 +213,14 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = $data['id'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
-        $this->container['description'] = $data['description'] ?? null;
-        $this->container['promo'] = $data['promo'] ?? null;
-        $this->container['price'] = $data['price'] ?? null;
-        $this->container['preselected'] = $data['preselected'] ?? null;
-        $this->container['tax_amount'] = $data['tax_amount'] ?? null;
+        $this->container['quantity'] = $data['quantity'] ?? null;
+        $this->container['unit_price'] = $data['unit_price'] ?? null;
         $this->container['tax_rate'] = $data['tax_rate'] ?? null;
-        $this->container['shipping_method'] = $data['shipping_method'] ?? null;
-        $this->container['delivery_details'] = $data['delivery_details'] ?? null;
-        $this->container['tms_reference'] = $data['tms_reference'] ?? null;
-        $this->container['selected_addons'] = $data['selected_addons'] ?? null;
+        $this->container['total_amount'] = $data['total_amount'] ?? null;
+        $this->container['total_tax_amount'] = $data['total_tax_amount'] ?? null;
+        $this->container['reference'] = $data['reference'] ?? null;
+        $this->container['merchant_data'] = $data['merchant_data'] ?? null;
     }
 
     /**
@@ -256,9 +232,6 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -270,15 +243,53 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
         }
 
-        if ($this->container['price'] === null) {
-            $invalidProperties[] = "'price' can't be null";
+        if ($this->container['quantity'] === null) {
+            $invalidProperties[] = "'quantity' can't be null";
         }
-        if ($this->container['tax_amount'] === null) {
-            $invalidProperties[] = "'tax_amount' can't be null";
+        if (($this->container['quantity'] < 0)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 0.";
         }
+
+        if ($this->container['unit_price'] === null) {
+            $invalidProperties[] = "'unit_price' can't be null";
+        }
+        if (($this->container['unit_price'] > 0)) {
+            $invalidProperties[] = "invalid value for 'unit_price', must be smaller than or equal to 0.";
+        }
+
         if ($this->container['tax_rate'] === null) {
             $invalidProperties[] = "'tax_rate' can't be null";
         }
+        if (($this->container['tax_rate'] > 10000)) {
+            $invalidProperties[] = "invalid value for 'tax_rate', must be smaller than or equal to 10000.";
+        }
+
+        if ($this->container['total_amount'] === null) {
+            $invalidProperties[] = "'total_amount' can't be null";
+        }
+        if (($this->container['total_amount'] > 0)) {
+            $invalidProperties[] = "invalid value for 'total_amount', must be smaller than or equal to 0.";
+        }
+
+        if ($this->container['total_tax_amount'] === null) {
+            $invalidProperties[] = "'total_tax_amount' can't be null";
+        }
+        if (!is_null($this->container['reference']) && (mb_strlen($this->container['reference']) > 255)) {
+            $invalidProperties[] = "invalid value for 'reference', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['reference']) && (mb_strlen($this->container['reference']) < 0)) {
+            $invalidProperties[] = "invalid value for 'reference', the character length must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['merchant_data']) && (mb_strlen($this->container['merchant_data']) > 1024)) {
+            $invalidProperties[] = "invalid value for 'merchant_data', the character length must be smaller than or equal to 1024.";
+        }
+
+        if (!is_null($this->container['merchant_data']) && (mb_strlen($this->container['merchant_data']) < 0)) {
+            $invalidProperties[] = "invalid value for 'merchant_data', the character length must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -295,30 +306,6 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string
@@ -331,17 +318,17 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name Name.
+     * @param string $name Descriptive name of discount
      *
      * @return self
      */
     public function setName($name)
     {
         if ((mb_strlen($name) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling ShippingOption., must be smaller than or equal to 255.');
+            throw new \InvalidArgumentException('invalid length for $name when calling DiscountLine., must be smaller than or equal to 255.');
         }
         if ((mb_strlen($name) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling ShippingOption., must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for $name when calling DiscountLine., must be bigger than or equal to 1.');
         }
 
         $this->container['name'] = $name;
@@ -350,121 +337,59 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets promo
-     *
-     * @return string|null
-     */
-    public function getPromo()
-    {
-        return $this->container['promo'];
-    }
-
-    /**
-     * Sets promo
-     *
-     * @param string|null $promo Promotion name. To be used if this shipping option is promotional.
-     *
-     * @return self
-     */
-    public function setPromo($promo)
-    {
-        $this->container['promo'] = $promo;
-
-        return $this;
-    }
-
-    /**
-     * Gets price
+     * Gets quantity
      *
      * @return int
      */
-    public function getPrice()
+    public function getQuantity()
     {
-        return $this->container['price'];
+        return $this->container['quantity'];
     }
 
     /**
-     * Sets price
+     * Sets quantity
      *
-     * @param int $price Price including tax.
+     * @param int $quantity Non-negative number. Quantity of the discount line item.
      *
      * @return self
      */
-    public function setPrice($price)
+    public function setQuantity($quantity)
     {
-        $this->container['price'] = $price;
+
+        if (($quantity < 0)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling DiscountLine., must be bigger than or equal to 0.');
+        }
+
+        $this->container['quantity'] = $quantity;
 
         return $this;
     }
 
     /**
-     * Gets preselected
-     *
-     * @return bool|null
-     */
-    public function getPreselected()
-    {
-        return $this->container['preselected'];
-    }
-
-    /**
-     * Sets preselected
-     *
-     * @param bool|null $preselected If true, this option will be preselected when checkout loads. Default: false
-     *
-     * @return self
-     */
-    public function setPreselected($preselected)
-    {
-        $this->container['preselected'] = $preselected;
-
-        return $this;
-    }
-
-    /**
-     * Gets tax_amount
+     * Gets unit_price
      *
      * @return int
      */
-    public function getTaxAmount()
+    public function getUnitPrice()
     {
-        return $this->container['tax_amount'];
+        return $this->container['unit_price'];
     }
 
     /**
-     * Sets tax_amount
+     * Sets unit_price
      *
-     * @param int $tax_amount Tax amount.
+     * @param int $unit_price Minor units. Includes tax, excludes discount. (Must be non-positive).  Example: -100 Euros should be -10000.
      *
      * @return self
      */
-    public function setTaxAmount($tax_amount)
+    public function setUnitPrice($unit_price)
     {
-        $this->container['tax_amount'] = $tax_amount;
+
+        if (($unit_price > 0)) {
+            throw new \InvalidArgumentException('invalid value for $unit_price when calling DiscountLine., must be smaller than or equal to 0.');
+        }
+
+        $this->container['unit_price'] = $unit_price;
 
         return $this;
     }
@@ -482,109 +407,133 @@ class ShippingOption implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tax_rate
      *
-     * @param int $tax_rate Non-negative. In percent, two implicit decimals. I.e 2500 = 25%.
+     * @param int $tax_rate Non-negative value. The percentage value is represented with two implicit decimals. (max 10000)  Example: 25% should be 2500.
      *
      * @return self
      */
     public function setTaxRate($tax_rate)
     {
+
+        if (($tax_rate > 10000)) {
+            throw new \InvalidArgumentException('invalid value for $tax_rate when calling DiscountLine., must be smaller than or equal to 10000.');
+        }
+
         $this->container['tax_rate'] = $tax_rate;
 
         return $this;
     }
 
     /**
-     * Gets shipping_method
+     * Gets total_amount
+     *
+     * @return int
+     */
+    public function getTotalAmount()
+    {
+        return $this->container['total_amount'];
+    }
+
+    /**
+     * Sets total_amount
+     *
+     * @param int $total_amount Minor units. Includes tax and discount.   Example: -25 euros should be -2500 Value = (quantity x unit_price). (Must be non-positive)
+     *
+     * @return self
+     */
+    public function setTotalAmount($total_amount)
+    {
+
+        if (($total_amount > 0)) {
+            throw new \InvalidArgumentException('invalid value for $total_amount when calling DiscountLine., must be smaller than or equal to 0.');
+        }
+
+        $this->container['total_amount'] = $total_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_tax_amount
+     *
+     * @return int
+     */
+    public function getTotalTaxAmount()
+    {
+        return $this->container['total_tax_amount'];
+    }
+
+    /**
+     * Sets total_tax_amount
+     *
+     * @param int $total_tax_amount Must be within ±1 of total_amount - total_amount \\* 10000 / (10000 + tax_rate). Should be non-positive
+     *
+     * @return self
+     */
+    public function setTotalTaxAmount($total_tax_amount)
+    {
+        $this->container['total_tax_amount'] = $total_tax_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
      *
      * @return string|null
      */
-    public function getShippingMethod()
+    public function getReference()
     {
-        return $this->container['shipping_method'];
+        return $this->container['reference'];
     }
 
     /**
-     * Sets shipping_method
+     * Sets reference
      *
-     * @param string|null $shipping_method Shipping method. Possible values:<ul><li>PickUpStore</li><li>Home</li><li>BoxReg</li><li>BoxUnreg</li><li>PickUpPoint</li><li>Own</li><li>Postal</li><li>DHLPackstation</li><li>Digital</li></ul> If DHLPackstation is selected the correct form will be displayed.
+     * @param string|null $reference The CRM reference to the gift-card that was entered by the user
      *
      * @return self
      */
-    public function setShippingMethod($shipping_method)
+    public function setReference($reference)
     {
-        $this->container['shipping_method'] = $shipping_method;
+        if (!is_null($reference) && (mb_strlen($reference) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $reference when calling DiscountLine., must be smaller than or equal to 255.');
+        }
+        if (!is_null($reference) && (mb_strlen($reference) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $reference when calling DiscountLine., must be bigger than or equal to 0.');
+        }
+
+        $this->container['reference'] = $reference;
 
         return $this;
     }
 
     /**
-     * Gets delivery_details
-     *
-     * @return \Klarna\Checkout\Model\DeliveryDetailsV1|null
-     */
-    public function getDeliveryDetails()
-    {
-        return $this->container['delivery_details'];
-    }
-
-    /**
-     * Sets delivery_details
-     *
-     * @param \Klarna\Checkout\Model\DeliveryDetailsV1|null $delivery_details delivery_details
-     *
-     * @return self
-     */
-    public function setDeliveryDetails($delivery_details)
-    {
-        $this->container['delivery_details'] = $delivery_details;
-
-        return $this;
-    }
-
-    /**
-     * Gets tms_reference
+     * Gets merchant_data
      *
      * @return string|null
      */
-    public function getTmsReference()
+    public function getMerchantData()
     {
-        return $this->container['tms_reference'];
+        return $this->container['merchant_data'];
     }
 
     /**
-     * Sets tms_reference
+     * Sets merchant_data
      *
-     * @param string|null $tms_reference TMS reference. Required to map completed orders to shipments reserved in TMS.
+     * @param string|null $merchant_data The gift-card number that was entered by the user
      *
      * @return self
      */
-    public function setTmsReference($tms_reference)
+    public function setMerchantData($merchant_data)
     {
-        $this->container['tms_reference'] = $tms_reference;
+        if (!is_null($merchant_data) && (mb_strlen($merchant_data) > 1024)) {
+            throw new \InvalidArgumentException('invalid length for $merchant_data when calling DiscountLine., must be smaller than or equal to 1024.');
+        }
+        if (!is_null($merchant_data) && (mb_strlen($merchant_data) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $merchant_data when calling DiscountLine., must be bigger than or equal to 0.');
+        }
 
-        return $this;
-    }
-
-    /**
-     * Gets selected_addons
-     *
-     * @return \Klarna\Checkout\Model\SelectedAddon[]|null
-     */
-    public function getSelectedAddons()
-    {
-        return $this->container['selected_addons'];
-    }
-
-    /**
-     * Sets selected_addons
-     *
-     * @param \Klarna\Checkout\Model\SelectedAddon[]|null $selected_addons selected_addons
-     *
-     * @return self
-     */
-    public function setSelectedAddons($selected_addons)
-    {
-        $this->container['selected_addons'] = $selected_addons;
+        $this->container['merchant_data'] = $merchant_data;
 
         return $this;
     }

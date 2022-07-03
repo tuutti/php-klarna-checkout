@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **description** | **string** | Description. | [optional]
 **promo** | **string** | Promotion name. To be used if this shipping option is promotional. | [optional]
 **price** | **int** | Price including tax. |
-**preselected** | **bool** | If true, this option will be preselected when checkout loads. Default: false | [optional] [default to false]
+**preselected** | **bool** | If true, this option will be preselected when checkout loads. Default: false | [optional]
 **tax_amount** | **int** | Tax amount. |
 **tax_rate** | **int** | Non-negative. In percent, two implicit decimals. I.e 2500 &#x3D; 25%. |
 **shipping_method** | **string** | Shipping method. Possible values:&lt;ul&gt;&lt;li&gt;PickUpStore&lt;/li&gt;&lt;li&gt;Home&lt;/li&gt;&lt;li&gt;BoxReg&lt;/li&gt;&lt;li&gt;BoxUnreg&lt;/li&gt;&lt;li&gt;PickUpPoint&lt;/li&gt;&lt;li&gt;Own&lt;/li&gt;&lt;li&gt;Postal&lt;/li&gt;&lt;li&gt;DHLPackstation&lt;/li&gt;&lt;li&gt;Digital&lt;/li&gt;&lt;/ul&gt; If DHLPackstation is selected the correct form will be displayed. | [optional]

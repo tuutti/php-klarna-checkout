@@ -63,6 +63,7 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'string',
         'name' => 'string',
         'quantity' => 'int',
+        'subscription' => '\Klarna\Checkout\Model\Subscription',
         'quantity_unit' => 'string',
         'unit_price' => 'int',
         'tax_rate' => 'int',
@@ -88,6 +89,7 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => null,
         'name' => null,
         'quantity' => 'int64',
+        'subscription' => null,
         'quantity_unit' => null,
         'unit_price' => 'int64',
         'tax_rate' => 'int64',
@@ -132,6 +134,7 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'reference',
         'name' => 'name',
         'quantity' => 'quantity',
+        'subscription' => 'subscription',
         'quantity_unit' => 'quantity_unit',
         'unit_price' => 'unit_price',
         'tax_rate' => 'tax_rate',
@@ -155,6 +158,7 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'setReference',
         'name' => 'setName',
         'quantity' => 'setQuantity',
+        'subscription' => 'setSubscription',
         'quantity_unit' => 'setQuantityUnit',
         'unit_price' => 'setUnitPrice',
         'tax_rate' => 'setTaxRate',
@@ -178,6 +182,7 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'getReference',
         'name' => 'getName',
         'quantity' => 'getQuantity',
+        'subscription' => 'getSubscription',
         'quantity_unit' => 'getQuantityUnit',
         'unit_price' => 'getUnitPrice',
         'tax_rate' => 'getTaxRate',
@@ -252,6 +257,7 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['reference'] = $data['reference'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['quantity'] = $data['quantity'] ?? null;
+        $this->container['subscription'] = $data['subscription'] ?? null;
         $this->container['quantity_unit'] = $data['quantity_unit'] ?? null;
         $this->container['unit_price'] = $data['unit_price'] ?? null;
         $this->container['tax_rate'] = $data['tax_rate'] ?? null;
@@ -274,8 +280,8 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['reference']) && (mb_strlen($this->container['reference']) > 64)) {
-            $invalidProperties[] = "invalid value for 'reference', the character length must be smaller than or equal to 64.";
+        if (!is_null($this->container['reference']) && (mb_strlen($this->container['reference']) > 255)) {
+            $invalidProperties[] = "invalid value for 'reference', the character length must be smaller than or equal to 255.";
         }
 
         if (!is_null($this->container['reference']) && (mb_strlen($this->container['reference']) < 0)) {
@@ -404,14 +410,14 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reference
      *
-     * @param string|null $reference Article number, SKU or similar. (max 64 characters)
+     * @param string|null $reference Article number, SKU or similar. (max 255 characters)
      *
      * @return self
      */
     public function setReference($reference)
     {
-        if (!is_null($reference) && (mb_strlen($reference) > 64)) {
-            throw new \InvalidArgumentException('invalid length for $reference when calling OrderLine., must be smaller than or equal to 64.');
+        if (!is_null($reference) && (mb_strlen($reference) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $reference when calling OrderLine., must be smaller than or equal to 255.');
         }
         if (!is_null($reference) && (mb_strlen($reference) < 0)) {
             throw new \InvalidArgumentException('invalid length for $reference when calling OrderLine., must be bigger than or equal to 0.');
@@ -478,6 +484,30 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets subscription
+     *
+     * @return \Klarna\Checkout\Model\Subscription|null
+     */
+    public function getSubscription()
+    {
+        return $this->container['subscription'];
+    }
+
+    /**
+     * Sets subscription
+     *
+     * @param \Klarna\Checkout\Model\Subscription|null $subscription subscription
+     *
+     * @return self
+     */
+    public function setSubscription($subscription)
+    {
+        $this->container['subscription'] = $subscription;
 
         return $this;
     }
@@ -721,7 +751,7 @@ class OrderLine implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets image_url
      *
-     * @param string|null $image_url URL to an image that can be later embedded in communications between Klarna and the customer (max 1024 characters).   A minimum of 250x250px resolution is recommended for the image to look good in the app, and below 50x50px won't even show. We recommend using a good sized image (650x650px or more), however the file size must not exceed 12MB.  Improves post-purchase customer experiences.
+     * @param string|null $image_url URL to an image that can be later embedded in communications between Klarna and the customer. (max 1024 characters)  Improves post-purchase customer experiences.
      *
      * @return self
      */
