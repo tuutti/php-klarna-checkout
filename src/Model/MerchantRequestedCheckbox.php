@@ -184,7 +184,7 @@ class MerchantRequestedCheckbox implements ModelInterface, ArrayAccess, \JsonSer
     public function __construct(array $data = null)
     {
         $this->container['id'] = $data['id'] ?? null;
-        $this->container['checked'] = $data['checked'] ?? false;
+        $this->container['checked'] = $data['checked'] ?? null;
     }
 
     /**

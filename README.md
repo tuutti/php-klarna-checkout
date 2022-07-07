@@ -60,13 +60,13 @@ $apiInstance = new Klarna\Checkout\Api\OrderApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order
+$order_id = 'order_id_example'; // string
 
 try {
-    $result = $apiInstance->createOrderMerchant($body);
+    $result = $apiInstance->abortOrder($order_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling OrderApi->createOrderMerchant: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling OrderApi->abortOrder: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -77,6 +77,7 @@ All URIs are relative to *https://api.klarna.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*OrderApi* | [**abortOrder**](docs/Api/OrderApi.md#abortorder) | **POST** /checkout/v3/orders/{order_id}/abort | Mark an order as aborted
 *OrderApi* | [**createOrderMerchant**](docs/Api/OrderApi.md#createordermerchant) | **POST** /checkout/v3/orders | Create a new order
 *OrderApi* | [**readOrderMerchant**](docs/Api/OrderApi.md#readordermerchant) | **GET** /checkout/v3/orders/{order_id} | Retrieve an order
 *OrderApi* | [**updateOrderMerchant**](docs/Api/OrderApi.md#updateordermerchant) | **POST** /checkout/v3/orders/{order_id} | Update an order
@@ -90,6 +91,7 @@ Class | Method | HTTP request | Description
 - [Customer](docs/Model/Customer.md)
 - [DeliveryDetailsV1](docs/Model/DeliveryDetailsV1.md)
 - [Dimensions](docs/Model/Dimensions.md)
+- [DiscountLine](docs/Model/DiscountLine.md)
 - [Gui](docs/Model/Gui.md)
 - [MerchantRequested](docs/Model/MerchantRequested.md)
 - [MerchantRequestedCheckbox](docs/Model/MerchantRequestedCheckbox.md)
@@ -104,6 +106,7 @@ Class | Method | HTTP request | Description
 - [SelectedAddon](docs/Model/SelectedAddon.md)
 - [ShippingAttributes](docs/Model/ShippingAttributes.md)
 - [ShippingOption](docs/Model/ShippingOption.md)
+- [Subscription](docs/Model/Subscription.md)
 - [TimeslotV1](docs/Model/TimeslotV1.md)
 
 ## Authorization

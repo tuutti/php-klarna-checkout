@@ -440,7 +440,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets street_address
      *
-     * @param string|null $street_address Street address, first line.
+     * @param string|null $street_address Street address, first line. (Street name and number)
      *
      * @return self
      */
@@ -464,7 +464,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets street_address2
      *
-     * @param string|null $street_address2 Street address, second line.
+     * @param string|null $street_address2 Street address, second line. (Apartment number, suite, etc.)
      *
      * @return self
      */

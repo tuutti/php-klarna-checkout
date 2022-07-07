@@ -81,6 +81,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => 'bool',
         'additional_checkboxes' => '\Klarna\Checkout\Model\CheckboxV2[]',
         'verify_national_identification_number' => 'bool',
+        'enable_discount_module' => 'bool',
         'show_vat_registration_number_field' => 'bool'
     ];
 
@@ -114,6 +115,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => null,
         'additional_checkboxes' => null,
         'verify_national_identification_number' => null,
+        'enable_discount_module' => null,
         'show_vat_registration_number_field' => null
     ];
 
@@ -166,6 +168,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => 'show_subtotal_detail',
         'additional_checkboxes' => 'additional_checkboxes',
         'verify_national_identification_number' => 'verify_national_identification_number',
+        'enable_discount_module' => 'enable_discount_module',
         'show_vat_registration_number_field' => 'show_vat_registration_number_field'
     ];
 
@@ -197,6 +200,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => 'setShowSubtotalDetail',
         'additional_checkboxes' => 'setAdditionalCheckboxes',
         'verify_national_identification_number' => 'setVerifyNationalIdentificationNumber',
+        'enable_discount_module' => 'setEnableDiscountModule',
         'show_vat_registration_number_field' => 'setShowVatRegistrationNumberField'
     ];
 
@@ -228,6 +232,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => 'getShowSubtotalDetail',
         'additional_checkboxes' => 'getAdditionalCheckboxes',
         'verify_national_identification_number' => 'getVerifyNationalIdentificationNumber',
+        'enable_discount_module' => 'getEnableDiscountModule',
         'show_vat_registration_number_field' => 'getShowVatRegistrationNumberField'
     ];
 
@@ -288,29 +293,30 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['require_validate_callback_success'] = $data['require_validate_callback_success'] ?? false;
+        $this->container['require_validate_callback_success'] = $data['require_validate_callback_success'] ?? null;
         $this->container['acquiring_channel'] = $data['acquiring_channel'] ?? null;
-        $this->container['vat_removed'] = $data['vat_removed'] ?? false;
-        $this->container['allow_separate_shipping_address'] = $data['allow_separate_shipping_address'] ?? false;
+        $this->container['vat_removed'] = $data['vat_removed'] ?? null;
+        $this->container['allow_separate_shipping_address'] = $data['allow_separate_shipping_address'] ?? null;
         $this->container['color_button'] = $data['color_button'] ?? null;
         $this->container['color_button_text'] = $data['color_button_text'] ?? null;
         $this->container['color_checkbox'] = $data['color_checkbox'] ?? null;
         $this->container['color_checkbox_checkmark'] = $data['color_checkbox_checkmark'] ?? null;
         $this->container['color_header'] = $data['color_header'] ?? null;
         $this->container['color_link'] = $data['color_link'] ?? null;
-        $this->container['date_of_birth_mandatory'] = $data['date_of_birth_mandatory'] ?? false;
+        $this->container['date_of_birth_mandatory'] = $data['date_of_birth_mandatory'] ?? null;
         $this->container['shipping_details'] = $data['shipping_details'] ?? null;
-        $this->container['title_mandatory'] = $data['title_mandatory'] ?? false;
+        $this->container['title_mandatory'] = $data['title_mandatory'] ?? null;
         $this->container['additional_checkbox'] = $data['additional_checkbox'] ?? null;
-        $this->container['national_identification_number_mandatory'] = $data['national_identification_number_mandatory'] ?? false;
+        $this->container['national_identification_number_mandatory'] = $data['national_identification_number_mandatory'] ?? null;
         $this->container['additional_merchant_terms'] = $data['additional_merchant_terms'] ?? null;
-        $this->container['phone_mandatory'] = $data['phone_mandatory'] ?? false;
+        $this->container['phone_mandatory'] = $data['phone_mandatory'] ?? null;
         $this->container['radius_border'] = $data['radius_border'] ?? null;
         $this->container['allowed_customer_types'] = $data['allowed_customer_types'] ?? null;
-        $this->container['show_subtotal_detail'] = $data['show_subtotal_detail'] ?? false;
+        $this->container['show_subtotal_detail'] = $data['show_subtotal_detail'] ?? null;
         $this->container['additional_checkboxes'] = $data['additional_checkboxes'] ?? null;
-        $this->container['verify_national_identification_number'] = $data['verify_national_identification_number'] ?? false;
-        $this->container['show_vat_registration_number_field'] = $data['show_vat_registration_number_field'] ?? false;
+        $this->container['verify_national_identification_number'] = $data['verify_national_identification_number'] ?? null;
+        $this->container['enable_discount_module'] = $data['enable_discount_module'] ?? null;
+        $this->container['show_vat_registration_number_field'] = $data['show_vat_registration_number_field'] ?? null;
     }
 
     /**
@@ -939,6 +945,30 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVerifyNationalIdentificationNumber($verify_national_identification_number)
     {
         $this->container['verify_national_identification_number'] = $verify_national_identification_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_discount_module
+     *
+     * @return bool|null
+     */
+    public function getEnableDiscountModule()
+    {
+        return $this->container['enable_discount_module'];
+    }
+
+    /**
+     * Sets enable_discount_module
+     *
+     * @param bool|null $enable_discount_module Enables the inline discount module
+     *
+     * @return self
+     */
+    public function setEnableDiscountModule($enable_discount_module)
+    {
+        $this->container['enable_discount_module'] = $enable_discount_module;
 
         return $this;
     }
