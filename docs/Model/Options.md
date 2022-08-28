@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **show_subtotal_detail** | **bool** | If true, the Order Detail subtotals view is expanded when the Klarna Checkout iFrame is loaded. Default: false | [optional]
 **additional_checkboxes** | [**\Klarna\Checkout\Model\CheckboxV2[]**](CheckboxV2.md) |  | [optional]
 **verify_national_identification_number** | **bool** | Enable verification of National Identification Numbers only in Sweden, Finland and Norway. This option also make the national identification number mandatory. (Not applicable for countries outside of Sweden, Finland and Norway) | [optional]
+**auto_capture** | **bool** | Allow merchant to trigger auto capturing. | [optional]
 **enable_discount_module** | **bool** | Enables the inline discount module | [optional]
 **show_vat_registration_number_field** | **bool** | If true, a optional VAT registration number field will be shown in the address form. Only applies for b2b orders. | [optional]
 

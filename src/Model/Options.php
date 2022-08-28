@@ -81,6 +81,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => 'bool',
         'additional_checkboxes' => '\Klarna\Checkout\Model\CheckboxV2[]',
         'verify_national_identification_number' => 'bool',
+        'auto_capture' => 'bool',
         'enable_discount_module' => 'bool',
         'show_vat_registration_number_field' => 'bool'
     ];
@@ -115,6 +116,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => null,
         'additional_checkboxes' => null,
         'verify_national_identification_number' => null,
+        'auto_capture' => null,
         'enable_discount_module' => null,
         'show_vat_registration_number_field' => null
     ];
@@ -168,6 +170,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => 'show_subtotal_detail',
         'additional_checkboxes' => 'additional_checkboxes',
         'verify_national_identification_number' => 'verify_national_identification_number',
+        'auto_capture' => 'auto_capture',
         'enable_discount_module' => 'enable_discount_module',
         'show_vat_registration_number_field' => 'show_vat_registration_number_field'
     ];
@@ -200,6 +203,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => 'setShowSubtotalDetail',
         'additional_checkboxes' => 'setAdditionalCheckboxes',
         'verify_national_identification_number' => 'setVerifyNationalIdentificationNumber',
+        'auto_capture' => 'setAutoCapture',
         'enable_discount_module' => 'setEnableDiscountModule',
         'show_vat_registration_number_field' => 'setShowVatRegistrationNumberField'
     ];
@@ -232,6 +236,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         'show_subtotal_detail' => 'getShowSubtotalDetail',
         'additional_checkboxes' => 'getAdditionalCheckboxes',
         'verify_national_identification_number' => 'getVerifyNationalIdentificationNumber',
+        'auto_capture' => 'getAutoCapture',
         'enable_discount_module' => 'getEnableDiscountModule',
         'show_vat_registration_number_field' => 'getShowVatRegistrationNumberField'
     ];
@@ -315,6 +320,7 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['show_subtotal_detail'] = $data['show_subtotal_detail'] ?? null;
         $this->container['additional_checkboxes'] = $data['additional_checkboxes'] ?? null;
         $this->container['verify_national_identification_number'] = $data['verify_national_identification_number'] ?? null;
+        $this->container['auto_capture'] = $data['auto_capture'] ?? null;
         $this->container['enable_discount_module'] = $data['enable_discount_module'] ?? null;
         $this->container['show_vat_registration_number_field'] = $data['show_vat_registration_number_field'] ?? null;
     }
@@ -945,6 +951,30 @@ class Options implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVerifyNationalIdentificationNumber($verify_national_identification_number)
     {
         $this->container['verify_national_identification_number'] = $verify_national_identification_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_capture
+     *
+     * @return bool|null
+     */
+    public function getAutoCapture()
+    {
+        return $this->container['auto_capture'];
+    }
+
+    /**
+     * Sets auto_capture
+     *
+     * @param bool|null $auto_capture Allow merchant to trigger auto capturing.
+     *
+     * @return self
+     */
+    public function setAutoCapture($auto_capture)
+    {
+        $this->container['auto_capture'] = $auto_capture;
 
         return $this;
     }
