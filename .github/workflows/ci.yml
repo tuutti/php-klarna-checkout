@@ -50,8 +50,8 @@ jobs:
           # Update the module and php library to locally installed version.
           composer config repositories.5 path $GITHUB_WORKSPACE
           composer config repositories.6 path modules/custom/commerce_klarna_payments
-          composer require drupal/commerce_klarna_payments
-          composer require tuutti/$KLARNA_LIBRARY_NAME
+          composer require drupal/commerce_klarna_payments -W
+          composer require tuutti/$KLARNA_LIBRARY_NAME -W
           composer require "drush/drush ^10.0"
           composer run-script drupal-phpunit-upgrade
           php -d sendmail_path=$(which true); vendor/bin/drush --yes -v site-install minimal --db-url="$SIMPLETEST_DB"
