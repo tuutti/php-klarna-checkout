@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 PHONY :=
 COMMAND = openapi-generator-cli
-OPENAPI_VERSION ?= v5.2.0
+OPENAPI_VERSION ?= v6.0.1
 
 include .env
 export
@@ -37,7 +37,7 @@ fix-models:
 
 PHONY += fix-composer-json
 fix-composer-json:
-	@echo "$$( jq --indent 4 '.require += {"tuutti/php-klarna-base": "~1.0"}' composer.json )" > composer.json
+	@echo "$$( jq --indent 4 '.require += {"tuutti/php-klarna-base": "^2.0"}' composer.json )" > composer.json
 
 PHONY += fix-shared-files
 fix-shared-files:
