@@ -40,6 +40,7 @@ jobs:
 
       - name: Build project
         run: |
+          composer config platform.php ${{ matrix.php-versions }}
           git clone --depth 1 --branch "$DRUPAL_CORE_VERSION" https://git.drupalcode.org/project/drupal.git $DRUPAL_ROOT
           cd $DRUPAL_ROOT
           composer require drupal/commerce_klarna_payments
