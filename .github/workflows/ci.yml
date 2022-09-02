@@ -42,8 +42,7 @@ jobs:
         run: |
           git clone --depth 1 --branch "$DRUPAL_CORE_VERSION" https://git.drupalcode.org/project/drupal.git $DRUPAL_ROOT
           cd $DRUPAL_ROOT
-          composer config platform.php ${{ matrix.php-versions }}
-          composer require drupal/commerce_klarna_payments
+          composer config platform.php ${{ matrix.php-version }}
           git clone https://git.drupalcode.org/project/commerce_klarna_payments.git modules/custom/commerce_klarna_payments
           # Allow commerce_klarna_payments to accept any version of our library
           cd modules/custom/commerce_klarna_payments && composer require --no-update "tuutti/$KLARNA_LIBRARY_NAME:*"
