@@ -7,7 +7,7 @@ name: CI
 env:
   SIMPLETEST_DB: "mysql://drupal:drupal@mariadb:3306/drupal"
   SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
-  DRUPAL_CORE_VERSION: 9.3.x
+  DRUPAL_CORE_VERSION: 9.4.x
   KLARNA_LIBRARY_NAME: "php-klarna-checkout"
   SYMFONY_DEPRECATIONS_HELPER: disabled
 jobs:
