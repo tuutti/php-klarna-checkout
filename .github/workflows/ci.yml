@@ -1,8 +1,6 @@
 on:
   push:
   pull_request:
-  schedule:
-    - cron:  '0 0 * * 0'
 name: CI
 env:
   KLARNA_LIBRARY_NAME: "php-klarna-checkout"
