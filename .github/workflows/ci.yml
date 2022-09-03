@@ -4,12 +4,6 @@ on:
   schedule:
     - cron:  '0 0 * * 0'
 name: CI
-env:
-  SIMPLETEST_DB: "mysql://drupal:drupal@mariadb:3306/drupal"
-  SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
-  DRUPAL_CORE_VERSION: 9.3.x
-  KLARNA_LIBRARY_NAME: "php-klarna-checkout"
-  SYMFONY_DEPRECATIONS_HELPER: disabled
 jobs:
   test-contrib:
     runs-on: ubuntu-latest
@@ -20,46 +14,13 @@ jobs:
     container:
       image: ghcr.io/tuutti/drupal-php-docker:${{ matrix.php-version }}
 
-    services:
-      mariadb:
-        image: mariadb:10.5
-        env:
-          MYSQL_USER: drupal
-          MYSQL_PASSWORD: drupal
-          MYSQL_DATABASE: drupal
-          MYSQL_ROOT_PASSWORD: drupal
-        ports:
-          - 3306:3306
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
 
-      - name: Set variables
-        run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
+      - name: Make sure all dependencies can be installed
+        run: composer install
 
-      - name: Build project
-        run: |
-          git clone --depth 1 --branch "$DRUPAL_CORE_VERSION" https://git.drupalcode.org/project/drupal.git $DRUPAL_ROOT
-          cd $DRUPAL_ROOT
-          composer require drupal/commerce_klarna_payments
-          git clone https://git.drupalcode.org/project/commerce_klarna_payments.git modules/custom/commerce_klarna_payments
-          # Allow commerce_klarna_payments to accept any version of our library
-          cd modules/custom/commerce_klarna_payments && composer require --no-update "tuutti/$KLARNA_LIBRARY_NAME:*"
-          cd $DRUPAL_ROOT
-          # Update the module and php library to locally installed version.
-          composer config repositories.5 path $GITHUB_WORKSPACE
-          composer config repositories.6 path modules/custom/commerce_klarna_payments
-          composer require drupal/commerce_klarna_payments
-          composer require tuutti/$KLARNA_LIBRARY_NAME
-          composer require "drush/drush ^10.0"
-          composer run-script drupal-phpunit-upgrade
-          php -d sendmail_path=$(which true); vendor/bin/drush --yes -v site-install minimal --db-url="$SIMPLETEST_DB"
-
-      # Test library against drupal/commerce_klarna_payments module.
-      - name: Run PHPUnit tests
-        run: |
-          cd $DRUPAL_ROOT
-          vendor/bin/drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
-          chromedriver --port=4444 > /dev/null 2>&1 &
-          php ./core/scripts/run-tests.sh --php /usr/local/bin/php --color --verbose --sqlite /tmp/test.sqlite --url $SIMPLETEST_BASE_URL commerce_klarna_payments
+      - name: Make sure we have installed 1.x version of klarna-base
+        run: if [[ $(composer show tuutti/php-klarna-base --format=json | jq .versions[0] -r) != "1."* ]]; then exit 1; fi
