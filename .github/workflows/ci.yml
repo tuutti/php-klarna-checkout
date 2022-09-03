@@ -35,31 +35,7 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Set variables
-        run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
-
-      - name: Build project
+      - name: Make sure all dependencies can be installed
         run: |
-          git clone --depth 1 --branch "$DRUPAL_CORE_VERSION" https://git.drupalcode.org/project/drupal.git $DRUPAL_ROOT
-          cd $DRUPAL_ROOT
-          composer config platform.php ${{ matrix.php-version }}
-          git clone https://git.drupalcode.org/project/commerce_klarna_payments.git modules/custom/commerce_klarna_payments
-          # Allow commerce_klarna_payments to accept any version of our library
-          cd modules/custom/commerce_klarna_payments && composer require --no-update "tuutti/$KLARNA_LIBRARY_NAME:*"
-          cd $DRUPAL_ROOT
-          # Update the module and php library to locally installed version.
-          composer config repositories.5 path $GITHUB_WORKSPACE
-          composer config repositories.6 path modules/custom/commerce_klarna_payments
-          composer require drupal/commerce_klarna_payments -W
+          composer config repositories.1 path $GITHUB_WORKSPACE
           composer require tuutti/$KLARNA_LIBRARY_NAME -W
-          composer require "drush/drush ^10.0"
-          composer run-script drupal-phpunit-upgrade
-          php -d sendmail_path=$(which true); vendor/bin/drush --yes -v site-install minimal --db-url="$SIMPLETEST_DB"
-
-      # Test library against drupal/commerce_klarna_payments module.
-      - name: Run PHPUnit tests
-        run: |
-          cd $DRUPAL_ROOT
-          vendor/bin/drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
-          chromedriver --port=4444 > /dev/null 2>&1 &
-          php ./core/scripts/run-tests.sh --php /usr/local/bin/php --color --verbose --sqlite /tmp/test.sqlite --url $SIMPLETEST_BASE_URL commerce_klarna_payments
