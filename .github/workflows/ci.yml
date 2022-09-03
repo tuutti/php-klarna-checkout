@@ -20,16 +20,6 @@ jobs:
     container:
       image: ghcr.io/tuutti/drupal-php-docker:${{ matrix.php-version }}
 
-    services:
-      mariadb:
-        image: mariadb:10.5
-        env:
-          MYSQL_USER: drupal
-          MYSQL_PASSWORD: drupal
-          MYSQL_DATABASE: drupal
-          MYSQL_ROOT_PASSWORD: drupal
-        ports:
-          - 3306:3306
     steps:
       - uses: actions/checkout@v2
         with:
@@ -37,5 +27,5 @@ jobs:
 
       - name: Make sure all dependencies can be installed
         run: |
-          composer config repositories.1 path $GITHUB_WORKSPACE
+          composer config repositories.0 path $GITHUB_WORKSPACE
           composer require tuutti/$KLARNA_LIBRARY_NAME -W
