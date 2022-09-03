@@ -6,9 +6,6 @@ on:
 jobs:
   update-definitions:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        branches: ['1.x', '2.x']
     steps:
       - uses: actions/checkout@v2
       - name: Build the client
@@ -19,6 +16,5 @@ jobs:
         with:
           committer: GitHub <noreply@github.com>
           author: actions-bot <actions-bot@users.noreply.github.com>
-          title: "[automation] Client updates (${{ matrix.branches }})"
-          base: ${{ matrix.branches }}
-          branch: update-definitions-${{ matrix.branches }}
+          title: "[automation] Client updates (v2)"
+          branch: update-definitions-v2
