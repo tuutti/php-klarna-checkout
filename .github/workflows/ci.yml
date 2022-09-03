@@ -25,4 +25,4 @@ jobs:
         run: composer install
 
       - name: Make sure we have installed 2.x version of klarna-base
-        run: [[ $(composer show tuutti/php-klarna-base --format=json | jq .versions[0] -r) != 2 ]] && exit 1
+        run: if [[ $(composer show tuutti/php-klarna-base --format=json | jq .versions[0] -r) != 2 ]]; then exit 1; fi
