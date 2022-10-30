@@ -1,5 +1,6 @@
 on:
   push:
+    branches: [ 2.x ]
   pull_request:
 name: CI
 env:
@@ -10,7 +11,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-version: ['7.4', '8.0', '8.1']
+        php-version: ['8.0', '8.1']
     container:
       image: ghcr.io/tuutti/drupal-php-docker:${{ matrix.php-version }}
 
