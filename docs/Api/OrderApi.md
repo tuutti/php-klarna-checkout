@@ -1,13 +1,13 @@
 # Klarna\Checkout\OrderApi
 
-All URIs are relative to https://api.klarna.com.
+All URIs are relative to https://api.klarna.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**abortOrder()**](OrderApi.md#abortOrder) | **POST** /checkout/v3/orders/{order_id}/abort | Mark an order as aborted
-[**createOrderMerchant()**](OrderApi.md#createOrderMerchant) | **POST** /checkout/v3/orders | Create a new order
-[**readOrderMerchant()**](OrderApi.md#readOrderMerchant) | **GET** /checkout/v3/orders/{order_id} | Retrieve an order
-[**updateOrderMerchant()**](OrderApi.md#updateOrderMerchant) | **POST** /checkout/v3/orders/{order_id} | Update an order
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**abortOrder()**](OrderApi.md#abortOrder) | **POST** /checkout/v3/orders/{order_id}/abort | Mark an order as aborted |
+| [**createOrderMerchant()**](OrderApi.md#createOrderMerchant) | **POST** /checkout/v3/orders | Create a new order |
+| [**readOrderMerchant()**](OrderApi.md#readOrderMerchant) | **GET** /checkout/v3/orders/{order_id} | Retrieve an order |
+| [**updateOrderMerchant()**](OrderApi.md#updateOrderMerchant) | **POST** /checkout/v3/orders/{order_id} | Update an order |
 
 
 ## `abortOrder()`
@@ -51,9 +51,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **order_id** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **order_id** | **string**|  | |
 
 ### Return type
 
@@ -114,10 +114,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **klarna_partner** | **string**|  | [optional]
- **body** | [**\Klarna\Checkout\Model\Order**](../Model/Order.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **klarna_partner** | **string**|  | [optional] |
+| **body** | [**\Klarna\Checkout\Model\Order**](../Model/Order.md)|  | [optional] |
 
 ### Return type
 
@@ -177,9 +177,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **order_id** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **order_id** | **string**|  | |
 
 ### Return type
 
@@ -240,10 +240,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **order_id** | **string**|  |
- **body** | [**\Klarna\Checkout\Model\Order**](../Model/Order.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **order_id** | **string**|  | |
+| **body** | [**\Klarna\Checkout\Model\Order**](../Model/Order.md)|  | [optional] |
 
 ### Return type
 
