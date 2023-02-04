@@ -38,6 +38,7 @@ fix-models:
 PHONY += fix-composer-json
 fix-composer-json:
 	@echo "$$( jq --indent 4 '.require += {"tuutti/php-klarna-base": "^2.0"}' composer.json )" > composer.json
+	@echo "$$( jq --indent 4 '.conflict += {"tuutti/php-klarna-base": "< 2.1"}' composer.json )" > composer.json
 
 PHONY += fix-shared-files
 fix-shared-files:

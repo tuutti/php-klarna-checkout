@@ -40,5 +40,8 @@
         "psr-4": {
             "Klarna\\Checkout\\Test\\": "test/"
         }
+    },
+    "conflict": {
+        "tuutti/php-klarna-base": "< 2.1"
     }
 }
