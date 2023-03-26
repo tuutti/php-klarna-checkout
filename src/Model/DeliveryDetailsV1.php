@@ -58,7 +58,6 @@ class DeliveryDetailsV1 implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPITypes = [
         'carrier' => 'string',
-        'class' => 'string',
         'product' => '\Klarna\Checkout\Model\ProductV1',
         'timeslot' => '\Klarna\Checkout\Model\TimeslotV1',
         'pickup_location' => '\Klarna\Checkout\Model\PickupLocationV1'
@@ -73,7 +72,6 @@ class DeliveryDetailsV1 implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPIFormats = [
         'carrier' => null,
-        'class' => null,
         'product' => null,
         'timeslot' => null,
         'pickup_location' => null
@@ -86,7 +84,6 @@ class DeliveryDetailsV1 implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'carrier' => false,
-		'class' => false,
 		'product' => false,
 		'timeslot' => false,
 		'pickup_location' => false
@@ -179,7 +176,6 @@ class DeliveryDetailsV1 implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $attributeMap = [
         'carrier' => 'carrier',
-        'class' => 'class',
         'product' => 'product',
         'timeslot' => 'timeslot',
         'pickup_location' => 'pickup_location'
@@ -192,7 +188,6 @@ class DeliveryDetailsV1 implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $setters = [
         'carrier' => 'setCarrier',
-        'class' => 'setClass',
         'product' => 'setProduct',
         'timeslot' => 'setTimeslot',
         'pickup_location' => 'setPickupLocation'
@@ -205,7 +200,6 @@ class DeliveryDetailsV1 implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $getters = [
         'carrier' => 'getCarrier',
-        'class' => 'getClass',
         'product' => 'getProduct',
         'timeslot' => 'getTimeslot',
         'pickup_location' => 'getPickupLocation'
@@ -269,7 +263,6 @@ class DeliveryDetailsV1 implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function __construct(array $data = null)
     {
         $this->setIfExists('carrier', $data ?? [], null);
-        $this->setIfExists('class', $data ?? [], null);
         $this->setIfExists('product', $data ?? [], null);
         $this->setIfExists('timeslot', $data ?? [], null);
         $this->setIfExists('pickup_location', $data ?? [], null);
@@ -340,33 +333,6 @@ class DeliveryDetailsV1 implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable carrier cannot be null');
         }
         $this->container['carrier'] = $carrier;
-
-        return $this;
-    }
-
-    /**
-     * Gets class
-     *
-     * @return string|null
-     */
-    public function getClass()
-    {
-        return $this->container['class'];
-    }
-
-    /**
-     * Sets class
-     *
-     * @param string|null $class Type of shipping class
-     *
-     * @return self
-     */
-    public function setClass($class)
-    {
-        if (is_null($class)) {
-            throw new \InvalidArgumentException('non-nullable class cannot be null');
-        }
-        $this->container['class'] = $class;
 
         return $this;
     }

@@ -424,16 +424,16 @@ class OrderApi
      * Create a new order
      *
      * @param  string $klarna_partner klarna_partner (optional)
-     * @param  \Klarna\Checkout\Model\Order $body body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrderMerchant'] to see the possible values for this operation
      *
      * @throws \Klarna\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Klarna\Checkout\Model\Order
      */
-    public function createOrderMerchant($klarna_partner = null, $body = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
+    public function createOrderMerchant($klarna_partner = null, $order = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
     {
-        list($response) = $this->createOrderMerchantWithHttpInfo($klarna_partner, $body, $contentType);
+        list($response) = $this->createOrderMerchantWithHttpInfo($klarna_partner, $order, $contentType);
         return $response;
     }
 
@@ -443,16 +443,16 @@ class OrderApi
      * Create a new order
      *
      * @param  string $klarna_partner (optional)
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrderMerchant'] to see the possible values for this operation
      *
      * @throws \Klarna\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Klarna\Checkout\Model\Order, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createOrderMerchantWithHttpInfo($klarna_partner = null, $body = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
+    public function createOrderMerchantWithHttpInfo($klarna_partner = null, $order = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
     {
-        $request = $this->createOrderMerchantRequest($klarna_partner, $body, $contentType);
+        $request = $this->createOrderMerchantRequest($klarna_partner, $order, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -544,15 +544,15 @@ class OrderApi
      * Create a new order
      *
      * @param  string $klarna_partner (optional)
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrderMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createOrderMerchantAsync($klarna_partner = null, $body = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
+    public function createOrderMerchantAsync($klarna_partner = null, $order = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
     {
-        return $this->createOrderMerchantAsyncWithHttpInfo($klarna_partner, $body, $contentType)
+        return $this->createOrderMerchantAsyncWithHttpInfo($klarna_partner, $order, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -566,16 +566,16 @@ class OrderApi
      * Create a new order
      *
      * @param  string $klarna_partner (optional)
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrderMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createOrderMerchantAsyncWithHttpInfo($klarna_partner = null, $body = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
+    public function createOrderMerchantAsyncWithHttpInfo($klarna_partner = null, $order = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
     {
         $returnType = '\Klarna\Checkout\Model\Order';
-        $request = $this->createOrderMerchantRequest($klarna_partner, $body, $contentType);
+        $request = $this->createOrderMerchantRequest($klarna_partner, $order, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -617,13 +617,13 @@ class OrderApi
      * Create request for operation 'createOrderMerchant'
      *
      * @param  string $klarna_partner (optional)
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrderMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createOrderMerchantRequest($klarna_partner = null, $body = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
+    public function createOrderMerchantRequest($klarna_partner = null, $order = null, string $contentType = self::contentTypes['createOrderMerchant'][0])
     {
 
 
@@ -651,12 +651,12 @@ class OrderApi
         );
 
         // for model (json/xml)
-        if (isset($body)) {
+        if (isset($order)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($order));
             } else {
-                $httpBody = $body;
+                $httpBody = $order;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1001,16 +1001,16 @@ class OrderApi
      * Update an order
      *
      * @param  string $order_id order_id (required)
-     * @param  \Klarna\Checkout\Model\Order $body body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrderMerchant'] to see the possible values for this operation
      *
      * @throws \Klarna\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Klarna\Checkout\Model\Order
      */
-    public function updateOrderMerchant($order_id, $body = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
+    public function updateOrderMerchant($order_id, $order = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
     {
-        list($response) = $this->updateOrderMerchantWithHttpInfo($order_id, $body, $contentType);
+        list($response) = $this->updateOrderMerchantWithHttpInfo($order_id, $order, $contentType);
         return $response;
     }
 
@@ -1020,16 +1020,16 @@ class OrderApi
      * Update an order
      *
      * @param  string $order_id (required)
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrderMerchant'] to see the possible values for this operation
      *
      * @throws \Klarna\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Klarna\Checkout\Model\Order, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateOrderMerchantWithHttpInfo($order_id, $body = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
+    public function updateOrderMerchantWithHttpInfo($order_id, $order = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
     {
-        $request = $this->updateOrderMerchantRequest($order_id, $body, $contentType);
+        $request = $this->updateOrderMerchantRequest($order_id, $order, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1121,15 +1121,15 @@ class OrderApi
      * Update an order
      *
      * @param  string $order_id (required)
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrderMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateOrderMerchantAsync($order_id, $body = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
+    public function updateOrderMerchantAsync($order_id, $order = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
     {
-        return $this->updateOrderMerchantAsyncWithHttpInfo($order_id, $body, $contentType)
+        return $this->updateOrderMerchantAsyncWithHttpInfo($order_id, $order, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1143,16 +1143,16 @@ class OrderApi
      * Update an order
      *
      * @param  string $order_id (required)
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrderMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateOrderMerchantAsyncWithHttpInfo($order_id, $body = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
+    public function updateOrderMerchantAsyncWithHttpInfo($order_id, $order = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
     {
         $returnType = '\Klarna\Checkout\Model\Order';
-        $request = $this->updateOrderMerchantRequest($order_id, $body, $contentType);
+        $request = $this->updateOrderMerchantRequest($order_id, $order, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1194,13 +1194,13 @@ class OrderApi
      * Create request for operation 'updateOrderMerchant'
      *
      * @param  string $order_id (required)
-     * @param  \Klarna\Checkout\Model\Order $body (optional)
+     * @param  \Klarna\Checkout\Model\Order $order (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrderMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateOrderMerchantRequest($order_id, $body = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
+    public function updateOrderMerchantRequest($order_id, $order = null, string $contentType = self::contentTypes['updateOrderMerchant'][0])
     {
 
         // verify the required parameter 'order_id' is set
@@ -1238,12 +1238,12 @@ class OrderApi
         );
 
         // for model (json/xml)
-        if (isset($body)) {
+        if (isset($order)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($order));
             } else {
-                $httpBody = $body;
+                $httpBody = $order;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

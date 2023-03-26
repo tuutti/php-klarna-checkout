@@ -443,7 +443,7 @@ class PaymentProvider implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description Description. (max 500 characters)
+     * @param string|null $description Short description of the payment method. This is displayed below the selected payment method. (max 500 characters)
      *
      * @return self
      */

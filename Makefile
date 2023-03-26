@@ -15,7 +15,7 @@ download-schema:
 PHONY += fix-schema
 fix-schema:
 	@echo "$$( jq '.security = [{ "basicAuth": [] }]' $(NAME).json )" > $(NAME).json
-	@echo "$$( jq '.securityDefinitions = { "basicAuth": { "type": "basic" }}' $(NAME).json )" > $(NAME).json
+	@echo "$$( jq '.components .securitySchemes = { "basicAuth": { "type": "http", "scheme": "basic" }}' $(NAME).json )" > $(NAME).json
 
 PHONY += build-client
 build-client:
@@ -49,6 +49,9 @@ fix-shared-files:
 
 PHONY += all
 all: download-schema fix-schema build-client fix-models fix-composer-json fix-shared-files
+
+PHONY += build
+build: fix-schema build-client fix-models fix-composer-json fix-shared-files
 
 define fix-shared-files
 	@rm src/$(1).php || true

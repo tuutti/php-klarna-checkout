@@ -75,7 +75,7 @@ try {
 ## `createOrderMerchant()`
 
 ```php
-createOrderMerchant($klarna_partner, $body): \Klarna\Checkout\Model\Order
+createOrderMerchant($klarna_partner, $order): \Klarna\Checkout\Model\Order
 ```
 
 Create a new order
@@ -102,10 +102,10 @@ $apiInstance = new Klarna\Checkout\Api\OrderApi(
     $config
 );
 $klarna_partner = 'klarna_partner_example'; // string
-$body = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order
+$order = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order
 
 try {
-    $result = $apiInstance->createOrderMerchant($klarna_partner, $body);
+    $result = $apiInstance->createOrderMerchant($klarna_partner, $order);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrderApi->createOrderMerchant: ', $e->getMessage(), PHP_EOL;
@@ -117,7 +117,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **klarna_partner** | **string**|  | [optional] |
-| **body** | [**\Klarna\Checkout\Model\Order**](../Model/Order.md)|  | [optional] |
+| **order** | [**\Klarna\Checkout\Model\Order**](../Model/Order.md)|  | [optional] |
 
 ### Return type
 
@@ -201,7 +201,7 @@ try {
 ## `updateOrderMerchant()`
 
 ```php
-updateOrderMerchant($order_id, $body): \Klarna\Checkout\Model\Order
+updateOrderMerchant($order_id, $order): \Klarna\Checkout\Model\Order
 ```
 
 Update an order
@@ -228,10 +228,10 @@ $apiInstance = new Klarna\Checkout\Api\OrderApi(
     $config
 );
 $order_id = 'order_id_example'; // string
-$body = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order
+$order = new \Klarna\Checkout\Model\Order(); // \Klarna\Checkout\Model\Order
 
 try {
-    $result = $apiInstance->updateOrderMerchant($order_id, $body);
+    $result = $apiInstance->updateOrderMerchant($order_id, $order);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrderApi->updateOrderMerchant: ', $e->getMessage(), PHP_EOL;
@@ -243,7 +243,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **order_id** | **string**|  | |
-| **body** | [**\Klarna\Checkout\Model\Order**](../Model/Order.md)|  | [optional] |
+| **order** | [**\Klarna\Checkout\Model\Order**](../Model/Order.md)|  | [optional] |
 
 ### Return type
 
