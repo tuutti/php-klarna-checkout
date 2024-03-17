@@ -1,13 +1,13 @@
-# Klarna\Checkout\OrderApi
+# Klarna\Checkout\DefaultApi
 
 All URIs are relative to https://api.klarna.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**abortOrder()**](OrderApi.md#abortOrder) | **POST** /checkout/v3/orders/{order_id}/abort | Abort an order |
-| [**createOrderMerchant()**](OrderApi.md#createOrderMerchant) | **POST** /checkout/v3/orders | Create an order |
-| [**readOrderMerchant()**](OrderApi.md#readOrderMerchant) | **GET** /checkout/v3/orders/{order_id} | Get order details |
-| [**updateOrderMerchant()**](OrderApi.md#updateOrderMerchant) | **POST** /checkout/v3/orders/{order_id} | Update an order |
+| [**abortOrder()**](DefaultApi.md#abortOrder) | **POST** /checkout/v3/orders/{order_id}/abort | Abort an order |
+| [**createOrderMerchant()**](DefaultApi.md#createOrderMerchant) | **POST** /checkout/v3/orders | Create an order |
+| [**readOrderMerchant()**](DefaultApi.md#readOrderMerchant) | **GET** /checkout/v3/orders/{order_id} | Get order details |
+| [**updateOrderMerchant()**](DefaultApi.md#updateOrderMerchant) | **POST** /checkout/v3/orders/{order_id} | Update an order |
 
 
 ## `abortOrder()`
@@ -33,7 +33,7 @@ $config = Klarna\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new Klarna\Checkout\Api\OrderApi(
+$apiInstance = new Klarna\Checkout\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -45,7 +45,7 @@ try {
     $result = $apiInstance->abortOrder($order_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling OrderApi->abortOrder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->abortOrder: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -95,7 +95,7 @@ $config = Klarna\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new Klarna\Checkout\Api\OrderApi(
+$apiInstance = new Klarna\Checkout\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -108,7 +108,7 @@ try {
     $result = $apiInstance->createOrderMerchant($klarna_partner, $order);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling OrderApi->createOrderMerchant: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->createOrderMerchant: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -159,7 +159,7 @@ $config = Klarna\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new Klarna\Checkout\Api\OrderApi(
+$apiInstance = new Klarna\Checkout\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -171,7 +171,7 @@ try {
     $result = $apiInstance->readOrderMerchant($order_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling OrderApi->readOrderMerchant: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->readOrderMerchant: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -221,7 +221,7 @@ $config = Klarna\Configuration::getDefaultConfiguration()
               ->setPassword('YOUR_PASSWORD');
 
 
-$apiInstance = new Klarna\Checkout\Api\OrderApi(
+$apiInstance = new Klarna\Checkout\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -234,7 +234,7 @@ try {
     $result = $apiInstance->updateOrderMerchant($order_id, $order);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling OrderApi->updateOrderMerchant: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->updateOrderMerchant: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

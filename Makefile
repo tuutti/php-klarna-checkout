@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 PHONY :=
 COMMAND = openapi-generator-cli
-OPENAPI_VERSION ?= v6.3.0
+OPENAPI_VERSION ?= v7.4.0
 
 include .env
 export
@@ -16,6 +16,10 @@ PHONY += fix-schema
 fix-schema:
 	@echo "$$( jq '.security = [{ "basicAuth": [] }]' $(NAME).json )" > $(NAME).json
 	@echo "$$( jq '.components .securitySchemes = { "basicAuth": { "type": "http", "scheme": "basic" }}' $(NAME).json )" > $(NAME).json
+	@echo "$$( jq '.paths."/checkout/v3/orders/{order_id}/abort".post.tags = ["order"]' $(NAME).json )" > $(NAME).json
+	@echo "$$( jq '.paths."/checkout/v3/orders".post.tags = ["order"]' $(NAME).json )" > $(NAME).json
+	@echo "$$( jq '.paths."/checkout/v3/orders/{order_id}".post.tags = ["order"]' $(NAME).json )" > $(NAME).json
+	@echo "$$( jq '.paths."/checkout/v3/orders/{order_id}".get.tags = ["order"]' $(NAME).json )" > $(NAME).json
 
 PHONY += build-client
 build-client:

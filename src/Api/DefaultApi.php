@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderApi
+ * DefaultApi
  * PHP version 7.4
  *
  * @category Class
@@ -40,14 +40,14 @@ use Klarna\HeaderSelector;
 use Klarna\ObjectSerializer;
 
 /**
- * OrderApi Class Doc Comment
+ * DefaultApi Class Doc Comment
  *
  * @category Class
  * @package  Klarna\Checkout
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class OrderApi
+class DefaultApi
 {
     /**
      * @var ClientInterface
